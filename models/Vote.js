@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const voteSchema = new mongoose.Schema({
   createUser: {
@@ -29,4 +29,4 @@ const voteSchema = new mongoose.Schema({
   versionKey: false,
 });
 
-module.exports = mongoose.model("User", voteSchema);
+module.exports = mongoose.model('Vote', voteSchema);

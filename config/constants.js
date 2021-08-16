@@ -1,5 +1,5 @@
-const CONNECTION_ERROR = "Connection error..";
-const CONNECTED_DATABASE = "Connected to database..";
+const CONNECTION_ERROR = 'Connection error..';
+const CONNECTED_DATABASE = 'Connected to database..';
 
 module.exports = {
   CONNECTION_ERROR,
