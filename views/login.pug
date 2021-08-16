@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/login.css')
+    include partials/appName
+  body
+    div(class="background")
+      div(class="container")
+        h1(class="appHeader") Blue Vote
+        p(class="subHeader") Welcome to Blue Vote <br> Make your own votes
+        section
+          form(class="loginForm")
+            input(class="email" placeholder="vanilla@gmail.com")
+            input(class="password" placeholder="✲✲✲✲✲✲✲✲")
+            button(class="login" type="submit") LOGIN
+            a(href="/signUp")
+              button(class="signUp" type="button") SIGN UP

@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/signUp.css')
+    include partials/appName
+  body
+    div(class="background")
+      div(class="container")
+        h1(class="appHeader") Blue Vote
+        p(class="subHeader") Insert your Info
+        section
+          form(class="signUpForm")
+            input(class="signUpEmail" placeholder="vanilla@gmail.com")
+            span(class="signUpComment") @이 포함된 이메일주소를 입력해주세요
+            input(class="signUpPassword" placeholder="✲✲✲✲✲✲✲✲")
+            span(class="signUpComment") 특수문자 1개 이상이 포함된 영어 소문자로 8글자 이상 입력해주세요
+            input(class="signUpPasswordCheck" placeholder="✲✲✲✲✲✲✲✲")
+            span(class="signUpComment") 위에서 입력한 비밀번호와 동일하게 한 번더 입력해주세요
+            button(class="signUpSubmit" type="submit") SIGN UP NOW

@@ -1,0 +1,56 @@
+.signUpForm{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.signUpForm {
+  margin-top: 80px;
+}
+
+.signUpEmail,
+.signUpPassword,
+.signUpPasswordCheck {
+  height: 30px;
+  width: 330px;
+  padding-top: 10px;
+  text-align: center;
+  font-size: 20px;
+  outline: none;
+  border: 0;
+  border-bottom: 3px solid #FFFFFF30;
+  background-color: transparent;
+  color: white;
+}
+
+.signUpEmail::placeholder,
+.signUpPassword::placeholder,
+.signUpPasswordCheck::placeholder {
+  font-size: 18px;
+  color: #FFFFFF30;
+}
+
+.signUpComment {
+  padding-top: 10px;
+  font-size: 12px;
+  color: #FFFFFF60;
+}
+
+.signUpSubmit {
+  width: 360px;
+  height: 50px;
+  margin: 40px 0 0 0;
+  outline: 0;
+  cursor: pointer;
+  font-size: 15px;
+  border: 2px solid white;
+  border-radius: 30px;
+  background-color: transparent;
+  color: white;
+}
+
+.signUpSubmit:hover {
+  border: 0;
+  background-color: #FFFFFF30;
+}
