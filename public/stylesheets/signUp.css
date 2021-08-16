@@ -1,3 +1,8 @@
+.message {
+  height: 14px;
+  color: #be0a0a9d;
+}
+
 .signUpForm{
   display: flex;
   flex-direction: column;
@@ -37,7 +42,8 @@
   color: #FFFFFF60;
 }
 
-.signUpSubmit {
+.signUpSubmit,
+.backToLogin {
   width: 360px;
   height: 50px;
   margin: 40px 0 0 0;
@@ -50,7 +56,12 @@
   color: white;
 }
 
-.signUpSubmit:hover {
+.backToLogin {
+  margin-top: 20px;
+}
+
+.signUpSubmit:hover,
+.backToLogin:hover {
   border: 0;
   background-color: #FFFFFF30;
 }

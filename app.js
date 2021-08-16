@@ -7,7 +7,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-const index = require('./routes/index');
+const main = require('./routes/main');
 const login = require('./routes/login');
 const signUp = require('./routes/signUp');
 
@@ -17,12 +17,13 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 app.use(logger('dev'));
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use('/', indexRouter);
+
+app.use('/', main);
 app.use('/login', login);
 app.use('/signUp', signUp);
 

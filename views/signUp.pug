@@ -1,20 +1,43 @@
 doctype html
 html
   head
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    link(rel='stylesheet', href='/stylesheets/signUp.css')
+    link(rel="stylesheet", href="/stylesheets/style.css")
+    link(rel="stylesheet", href="/stylesheets/signUp.css")
     include partials/appName
   body
     div(class="background")
       div(class="container")
         h1(class="appHeader") Blue Vote
-        p(class="subHeader") Insert your Info
+        p(class="message")= message
         section
-          form(class="signUpForm")
-            input(class="signUpEmail" placeholder="vanilla@gmail.com")
+          form(
+            class="signUpForm"
+            action="/signUp"
+            method="POST"
+          )
+            input(
+              class="signUpEmail"
+              name="email"
+              placeholder="vanilla@gmail.com"
+            )
             span(class="signUpComment") @이 포함된 이메일주소를 입력해주세요
-            input(class="signUpPassword" placeholder="✲✲✲✲✲✲✲✲")
-            span(class="signUpComment") 특수문자 1개 이상이 포함된 영어 소문자로 8글자 이상 입력해주세요
-            input(class="signUpPasswordCheck" placeholder="✲✲✲✲✲✲✲✲")
+
+            input(
+              class="signUpPassword"
+              name="password"
+              type="password"
+              placeholder="✲✲✲✲✲✲✲✲"
+            )
+            span(class="signUpComment") 8~16자의 영문 대소문자와 숫자만 입력 가능합니다.
+
+            input(
+              class="signUpPasswordCheck"
+              name="checkedPassword"
+              type="password"
+              placeholder="✲✲✲✲✲✲✲✲"
+            )
             span(class="signUpComment") 위에서 입력한 비밀번호와 동일하게 한 번더 입력해주세요
+
             button(class="signUpSubmit" type="submit") SIGN UP NOW
+            a(href="/login")
+              button(class="backToLogin" type="button") GO TO LOGIN
