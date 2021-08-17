@@ -1,11 +1,3 @@
-class ServerError extends Error {
-  constructor() {
-    this.name = "ServerError";
-    this.status = 500;
-    this.message = 'Server Error';
-  }
-}
-
 class ValidationError extends Error {
   constructor(message) {
     super(message);
@@ -15,6 +7,5 @@ class ValidationError extends Error {
 }
 
 module.exports = {
-  ServerError,
   ValidationError,
 };

@@ -16,6 +16,7 @@ router.post(
       function(err, user, message) {
         if (err) {
           if (err instanceof mongoose.Error.ValidationError) {
+            // 어떤 데이터때문에 문제나는지 // 400대
             return next(createError(500, 'Database Error'));
           }
 

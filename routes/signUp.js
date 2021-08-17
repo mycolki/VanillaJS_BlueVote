@@ -61,7 +61,7 @@ router.post('/',
     }
 
     try {
-      User.create({
+      await User.create({
         email,
         password: hashedPassword,
       });

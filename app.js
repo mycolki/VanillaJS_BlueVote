@@ -15,6 +15,7 @@ const path = require('path');
 const main = require('./routes/main');
 const login = require('./routes/login');
 const signUp = require('./routes/signUp');
+const votings = require('./routes/votings');
 
 const app = express();
 
@@ -23,6 +24,11 @@ app.use(
     secret: process.env.SECRET_COOKIE_ID,
     resave: true,
     saveUninitialized: false,
+    cookie: {
+      httpOnly: true,
+      secure: false,
+      maxAge: 60 * 60,
+    },
   })
 );
 
@@ -43,6 +49,8 @@ const { showLoginPageNotLoginUser, showMainPageLoginUser } = require('./routes/m
 app.use('/signUp', showMainPageLoginUser, signUp);
 app.use('/login', showMainPageLoginUser, login);
 app.use('/', showLoginPageNotLoginUser, main);
+// app.use('/votings', showLoginPageNotLoginUser, votings);
+app.use('/votings', votings);
 
 app.use(function (req, res, next) {
   next(createError(404));
