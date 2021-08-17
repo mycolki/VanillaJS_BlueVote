@@ -14,7 +14,7 @@
   font-size: 20px;
   outline: none;
   border: 0;
-  border-bottom: 3px solid #FFFFFF30;
+  border-bottom: 3px solid #FFFFFF70;
   background-color: transparent;
   color: white;
 }
@@ -26,11 +26,16 @@
 .email::placeholder,
 .password::placeholder {
   font-size: 18px;
-  color: #FFFFFF30;
+  color: #FFFFFF70;
+}
+
+.message {
+  height: 40px;
+  padding: 10px;
 }
 
 .loginForm {
-  margin-top: 120px;
+  margin-top: 60px;
 }
 
 .login,

@@ -2,6 +2,10 @@ const express = require('express');
 const router = express.Router();
 
 const { body, validationResult } = require('express-validator');
+const createError = require('http-errors');
+
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 const User = require('../models/User');
 
@@ -11,41 +15,59 @@ router.get('/', function (req, res, next) {
 
 router.post('/',
   body('email').isEmail(),
-  body('password').isLength({ min: 8, max: 16 }),
-  function (req, res, next) {
+  body('password').isLength({ min: 4, max: 8 }),
+  async function (req, res, next) {
     if (!req.body) {
-      res.render('signUp', {
-        message: 'email 과 password를 입력해주세요'
-      });
+      res
+        .status(400)
+        .render('signUp', {
+          message: 'email 과 password를 입력해주세요'
+        });
     }
 
     const { email, password, checkedPassword } = req.body;
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
     const errors = validationResult(req);
+
+    try {
+      if (await User.exists({ email })) {
+        return res
+          .status(400)
+          .render('signUp', {
+            message: '이미 가입되어 있는 email입니다'
+          });
+      }
+
+    } catch {
+      next(createError(500, "Server Error"));
+    }
 
     if (!errors.isEmpty()) {
       const invalidInputs = errors.array().map(error => error.param).join(', ');
 
-      return res.render('signUp', {
-        message: `${invalidInputs} 형식이 잘못 되었습니다. 다시 입력해주세요.`
-      });
+      return res
+        .status(400)
+        .render('signUp', {
+          message: `${invalidInputs} 형식이 잘못 되었습니다. 다시 입력해주세요.`
+        });
     }
 
     if (password !== checkedPassword) {
-      return res.render('signUp', {
-        message: '비밀번호와 확인용 비밀번호가 일치하지 않습니다.'
-      });
+      return res
+        .status(400)
+        .render('signUp', {
+          message: '비밀번호와 확인용 비밀번호가 일치하지 않습니다.'
+        });
     }
 
-    if (User.exists({ email })) {
-      return res.render('signUp', {
-        message: "이미 가입되어 있는 email입니다"
+    try {
+      User.create({
+        email,
+        password: hashedPassword,
       });
+    } catch {
+      next(createError(500, "Server Error"));
     }
-
-    User.create({
-      email,
-      password,
-    });
 
     res.redirect('/login');
 });
