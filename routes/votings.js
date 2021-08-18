@@ -14,6 +14,14 @@ router.get('/new', function (req, res, next) {
   res.render('newVoting');
 });
 
+router.get('/success', function (req, res, next) {
+  res.render('success');
+});
+
+router.get('/error', function (req, res, next) {
+  res.render('error');
+});
+
 router.post('/new',
   body('title').exists({ checkFalsy: true }).isString(),
   body('options').isLength({ min: 2 }).notEmpty(),
@@ -26,10 +34,10 @@ router.post('/new',
 
     if (!req.body) {
       return res
-      .status(400)
-      .render('newVoting', {
-        message: '빈칸을 모두 입력하고 투표만들기 버튼을 눌러주세요'
-      });
+        .status(400)
+        .render('newVoting', {
+          message: '빈칸을 모두 입력하고 투표만들기 버튼을 눌러주세요'
+        });
     }
 
     const { _id } = req.user;
@@ -40,10 +48,7 @@ router.post('/new',
 
     if (!errors.isEmpty()) {
       const params = { title: '투표 주제', expiredAt: '투표 마감시간', options: '선택지' };
-
-      errors.array().forEach(error => {
-        allErrors[error.param] = params[error.param];
-      });
+      errors.array().forEach(error => allErrors[error.param] = params[error.param]);
 
       const invalidInputs = Object.values(allErrors).join(', ');
 
@@ -83,6 +88,8 @@ router.post('/new',
 
       next(createError(500, 'Server Error'));
     }
+
+    res.redirect('/votings/success');
   }
 );
 

@@ -21,6 +21,7 @@
   border-bottom: 2px solid #FFFFFF70;
   text-align: center;
   background-color: transparent;
+  color: white;
 }
 
 .votingTitle {
@@ -59,6 +60,7 @@
   width: 400px;
   margin-right: 10px;
   padding: 0 10px 0 10px;
+  text-align: center;
   font-size: 14px;
   outline: 0;
   border: 0;
@@ -86,6 +88,7 @@
 .addOptionBtn,
 .createVotingBtn {
   width: 200px;
+  color: white;
 }
 
 .createVotingBtn {

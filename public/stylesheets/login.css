@@ -39,8 +39,8 @@
   margin-top: 60px;
 }
 
-.login,
-.signUp {
+.loginBtn,
+.signUpBtn {
   width: 360px;
   height: 50px;
   margin-bottom: 20px;
@@ -53,8 +53,8 @@
   color: white;
 }
 
-.login:hover,
-.signUp:hover {
+.loginBtn:hover,
+.signUpBtn:hover {
   border: 0;
   background-color: #FFFFFF30;
 }
