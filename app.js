@@ -27,7 +27,7 @@ app.use(
     cookie: {
       httpOnly: true,
       secure: false,
-      maxAge: 60 * 60,
+      maxAge: 60 * 60 * 1000,
     },
   })
 );
@@ -49,8 +49,7 @@ const { showLoginPageNotLoginUser, showMainPageLoginUser } = require('./routes/m
 app.use('/signUp', showMainPageLoginUser, signUp);
 app.use('/login', showMainPageLoginUser, login);
 app.use('/', showLoginPageNotLoginUser, main);
-// app.use('/votings', showLoginPageNotLoginUser, votings);
-app.use('/votings', votings);
+app.use('/votings', showLoginPageNotLoginUser, votings);
 
 app.use(function (req, res, next) {
   next(createError(404));

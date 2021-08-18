@@ -1,5 +1,7 @@
 function showLoginPageNotLoginUser(req, res, next) {
+  console.log('인증' + req.isAuthenticated())
   if (!req.isAuthenticated()) {
+    console.log('redirect')
     return res.redirect('/login');
   }
 

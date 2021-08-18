@@ -18,7 +18,7 @@ router.post('/',
   body('password').isLength({ min: 4, max: 8 }),
   async function (req, res, next) {
     if (!req.body) {
-      res
+      return res
         .status(400)
         .render('signUp', {
           message: 'email 과 password를 입력해주세요'
@@ -37,9 +37,8 @@ router.post('/',
             message: '이미 가입되어 있는 email입니다'
           });
       }
-
     } catch {
-      next(createError(500, "Server Error"));
+      return next(createError(500, 'Server Error'));
     }
 
     if (!errors.isEmpty()) {
@@ -66,7 +65,7 @@ router.post('/',
         password: hashedPassword,
       });
     } catch {
-      next(createError(500, "Server Error"));
+      return next(createError(500, 'Server Error'));
     }
 
     res.redirect('/login');

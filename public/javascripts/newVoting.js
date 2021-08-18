@@ -1,5 +1,7 @@
 const $newVotingForm = document.querySelector('.newVotingForm');
 const $addOptionBtn = document.querySelector('.addOptionBtn');
+const $buttons = document.querySelector('.buttons');
+
 let $removeOptionBtns = document.querySelectorAll('.removeOptionBtn');
 
 function createElementWithClass(tagName, className, type, alt) {
@@ -44,11 +46,12 @@ $addOptionBtn.addEventListener('click', () => {
   const $option = createElementWithClass('input', 'option', 'text');
   const $removeOptionBtn = createElementWithClass('button', 'removeOptionBtn', 'button', 'remove');
 
-  $option.setAttribute('name', 'option');
+  $option.setAttribute('name', 'options');
+  $option.setAttribute('maxlength', '25');
   $removeOptionBtn.textContent = '➖';
 
   $optionRow.append($option, $removeOptionBtn);
-  $newVotingForm.append($optionRow);
+  $newVotingForm.insertBefore($optionRow, $buttons);
 
   $removeOptionBtns = document.querySelectorAll('.removeOptionBtn');
 });

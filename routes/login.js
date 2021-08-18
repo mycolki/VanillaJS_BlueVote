@@ -16,11 +16,13 @@ router.post(
       function(err, user, message) {
         if (err) {
           if (err instanceof mongoose.Error.ValidationError) {
-            // 어떤 데이터때문에 문제나는지 // 400대
-            return next(createError(500, 'Database Error'));
+            // 어떤거 저장하다가 나온 에런지 찾아서 사용자에게 알려주기
+            return res
+              .status(400)
+              .render('login', { message: '형식에 맞춰서 ***를 다시 입력해주세요' });
           }
 
-          next(createError(500, "Server Error"));
+          return next(createError(500, 'Server Error'));
         }
 
         if (!user) {
@@ -31,7 +33,7 @@ router.post(
 
         req.logIn(user, function (err) {
           if (err) {
-            return next(createError(500, "Server Error"));
+            return next(createError(500, 'Server Error'));
           }
 
           res.redirect('/');
