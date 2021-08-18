@@ -1,6 +1,6 @@
 const $newVotingForm = document.querySelector('.newVotingForm');
 const $addOptionBtn = document.querySelector('.addOptionBtn');
-const $buttons = document.querySelector('.buttons');
+const $addOptionMessage = document.querySelector('.addOptionMessage');
 
 let $removeOptionBtns = document.querySelectorAll('.removeOptionBtn');
 
@@ -51,7 +51,7 @@ $addOptionBtn.addEventListener('click', () => {
   $removeOptionBtn.textContent = '➖';
 
   $optionRow.append($option, $removeOptionBtn);
-  $newVotingForm.insertBefore($optionRow, $buttons);
+  $newVotingForm.insertBefore($optionRow, $addOptionMessage);
 
   $removeOptionBtns = document.querySelectorAll('.removeOptionBtn');
 });

@@ -74,8 +74,6 @@
 .createVotingBtn {
   height: 40px;
   line-height: 40px;
-  cursor: pointer;
-  border: 0;
   border-radius: 10px;
   background-color: #FFFFFF70;
 }
@@ -85,21 +83,20 @@
   width: 50px;
 }
 
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .addOptionBtn,
 .createVotingBtn {
-  width: 200px;
+  width: 160px;
   color: white;
 }
 
-.createVotingBtn {
-  margin-top: 20px;
-}
-
-.buttons {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.addOptionBtn {
+  margin-right: 20px;
 }
 
 .addOptionMessage {
@@ -108,4 +105,40 @@
   padding: 10px;
   font-size: 12px;
   color: white;
+}
+
+.goToMainBtn {
+  width: 360px;
+  height: 50px;
+  margin: 20px 0 20px 0;
+  outline: 0;
+  cursor: pointer;
+  font-size: 18px;
+  border: 2px solid white;
+  border-radius: 30px;
+  background-color: transparent;
+  color: white;
+}
+
+.goToMainBtn:hover {
+  border: 0;
+  background-color: #FFFFFF30;
+}
+
+.backToMainBtn {
+  position: absolute;
+  top: 76%;
+  left: 50%;
+  bottom: 0;
+  width: 350px;
+  height: 45px;
+  margin: 100px 0 20px 0;
+  outline: 0;
+  cursor: pointer;
+  font-size: 14px;
+  border: 2px solid #FFFFFF70;
+  border-radius: 30px;
+  background-color: transparent;
+  color: white;
+  transform: translate(-50%, -50%);
 }

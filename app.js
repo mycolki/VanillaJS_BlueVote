@@ -16,6 +16,7 @@ const main = require('./routes/main');
 const login = require('./routes/login');
 const signUp = require('./routes/signUp');
 const votings = require('./routes/votings');
+const myVotings = require('./routes/myVotings');
 
 const app = express();
 
@@ -50,6 +51,7 @@ app.use('/signUp', showMainPageLoginUser, signUp);
 app.use('/login', showMainPageLoginUser, login);
 app.use('/', showLoginPageNotLoginUser, main);
 app.use('/votings', showLoginPageNotLoginUser, votings);
+app.use('/myVotings', showLoginPageNotLoginUser, myVotings);
 
 app.use(function (req, res, next) {
   next(createError(404));

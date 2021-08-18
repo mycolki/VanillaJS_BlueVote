@@ -1,0 +1,87 @@
+.mainHeader {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 50px 30px 50px;
+  line-height: 30px;
+  font-weight: 800;
+  font-style: italic;
+  font-size: 30px;
+  color: white;
+}
+
+.mainSubTitle {
+  margin: 0 0 20px 0;
+  color: white;
+}
+
+.myVotingBtn,
+.newVotingBtn,
+.ongoingVoteBtn,
+.finishedVoteBtn {
+  background-color: transparent;
+}
+
+.myVotingBtn,
+.newVotingBtn {
+  box-shadow: none;
+  line-height: 30px;
+  font-size: 30px;
+  transition: transform 100ms ease-in;
+}
+
+.ongoingVoteBtn,
+.finishedVoteBtn {
+  width: 90px;
+  margin: 0 5px 20px 5px;
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 10px;
+  background-color: #FFFFFF70;
+  color: #00A1DF;
+  transition: transform 100ms ease-in;
+}
+
+.ongoingVoteBtn:hover,
+.finishedVoteBtn:hover {
+  background-color: white;
+  transform: scale(1.05);
+}
+
+.votingContainer {
+  width: 400px;
+  height: 50px;
+  margin: 0 auto 10px auto;
+  padding: 10px;
+  cursor: pointer;
+  border: 2px solid #FFFFFF;
+  border-radius: 25px;
+  background-color: #FFFFFF50;
+  box-shadow: 0px 1px 5px 3px rgb(0 0 0 / 10%);
+  transition: transform 100ms ease-in;
+}
+
+.myVotingBtn:hover,
+.newVotingBtn:hover,
+.votingContainer:hover {
+  transform: scaleX(1.05);
+}
+
+.votingInfo,
+.votingTitle {
+  width: 400px;
+  padding-bottom: 10px;
+  color: #00A1DF;
+}
+
+.votingInfo:hover,
+.votingTitle:hover {
+  color: white;
+}
+
+.creator {
+  margin-right: 200px;
+}
+
+.votingTitle {
+  margin: 0;
+}

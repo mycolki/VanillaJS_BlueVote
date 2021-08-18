@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,700&display=swap');
+
 html,
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 input:-webkit-autofill,
@@ -13,6 +15,13 @@ input:-webkit-autofill:active {
   -webkit-transition: background-color 9999s ease-out;
   -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
   -webkit-text-fill-color: #fff !important;
+}
+
+button {
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  box-shadow: 0px 1px 5px 3px rgba(0, 0, 0, 0.1);
 }
 
 .background {
@@ -30,11 +39,14 @@ input:-webkit-autofill:active {
   text-align: center;
   border-radius: 30px;
   background-color: #04c0feb0;
+  box-shadow: 0px 1px 5px 3px rgba(0, 0, 0, 0.1);
 }
 
 .appHeader {
   margin: 0;
   padding-top: 100px;
+  font-weight: 800;
+  font-style: italic;
   font-size: 50px;
   color: white;
 }
