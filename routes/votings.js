@@ -5,6 +5,7 @@ const express = require('express');
 const router = express.Router();
 
 const Vote = require('../models/Vote');
+const User = require('../models/User');
 
 router.get('/', function (req, res, next) {
   res.render('votings');
@@ -92,5 +93,19 @@ router.post('/new',
     res.redirect('/votings/success');
   }
 );
+
+router.get('/:id', async function (req, res, next) {
+  const { id } = req.params;
+  console.log(id)
+
+  try {
+    const vote = await Vote.findOne({ _id: id }).exec();
+    console.log(vote)
+    return res.render('myVoting', { vote });
+  } catch (err) {
+    console.console.error();(err);
+  }
+
+});
 
 module.exports = router;

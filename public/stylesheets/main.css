@@ -34,16 +34,16 @@
   width: 90px;
   margin: 0 5px 20px 5px;
   padding: 5px 10px;
+  font-weight: 800;
   font-size: 12px;
   border-radius: 10px;
-  background-color: #FFFFFF70;
+  background-color: white;
   color: #00A1DF;
   transition: transform 100ms ease-in;
 }
 
 .ongoingVoteBtn:hover,
 .finishedVoteBtn:hover {
-  background-color: white;
   transform: scale(1.05);
 }
 
@@ -66,10 +66,16 @@
   transform: scaleX(1.05);
 }
 
+.votingInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .votingInfo,
 .votingTitle {
-  width: 400px;
-  padding-bottom: 10px;
+  width: 360px;
+  padding: 0 10px 10px 20px;
   color: #00A1DF;
 }
 
@@ -78,10 +84,8 @@
   color: white;
 }
 
-.creator {
-  margin-right: 200px;
-}
-
 .votingTitle {
   margin: 0;
+  font-weight: 800;
+  font-style: italic;
 }

@@ -5,28 +5,28 @@ html
     link(rel="stylesheet", href="/stylesheets/main.css")
     include partials/appName
   body
-    div(class="background")
-      div(class="container")
-        header(class="mainHeader")
-          a(href="/myVotings")
-            button(class="myVotingBtn" type="button" alt="profile") 🙍‍♀️
-          span(class="mainTitle") BLUE VOTE
+    .background
+      .container
+        header.mainHeader
+          a(href="/myVoting")
+            button.myVotingBtn(type="button" alt="profile") 🙍‍♀️
+          span.mainTitle BLUE VOTE
           a(href="/votings/new")
-            button(class="newVotingBtn" type="button" alt="createNewVote") ➕
-        p(class="mainSubTitle") 당신의 투표권을 행사하세요 !
+            button.newVotingBtn(type="button" alt="createNewVote") ➕
+        p.mainSubTitle 당신의 투표권을 행사하세요 !
 
-        nav(class="selectButtons")
-          button(class="ongoingVoteBtn" type="button") 진행중인 투표
-          button(class="finishedVoteBtn" type="button") 마감된 투표
+        nav.selectButtons
+          button.ongoingVoteBtn(type="button") 진행중인 투표
+          button.finishedVoteBtn(type="button") 마감된 투표
 
         section
-          div(class="votingContainer")
-            div(class="votingInfo")
-              span(class="creator") mycolki
-              span(class="expiredTime") 2020/08/18 16:00
-            p(class="votingTitle") 오늘의 야식은 무엇일까요
-          div(class="votingContainer")
-            div(class="votingInfo")
-              span(class="creator") hany
-              span(class="expiredTime") 2020/08/18 20:30
-            p(class="votingTitle") 1 + 1 + 1 + 1 의 정답은?
+          each vote in votes
+            #{console.log(vote)}
+
+            a(href=`/votings/${vote._id}`)
+              .votingContainer
+                .votingInfo
+                  span.creator= vote.createUser.email
+                  span.expiredTime #{vote.expiredAt.toLocaleString()}
+                p.votingTitle= vote.title
+

@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    link(rel="stylesheet", href="/stylesheets/style.css")
+    link(rel="stylesheet", href="/stylesheets/main.css")
+    include partials/appName
+  body
+    .background
+      .container
+        header.mainHeader
+          a(href="/myVoting")
+            button.myVotingBtn(type="button" alt="profile") 🙍‍♀️
+          span.mainTitle BLUE VOTE
+          a(href="/votings/new")
+            button.newVotingBtn(type="button" alt="createNewVote") ➕
+        p.mainSubTitle 너님이 만든 투표리스트를 확인해보세요 !
+
+        section
+          #{vote}
+            .votingContainer
+              .votingInfo
+                span.creator= vote._id
+                span.expiredTime #{vote.expiredAt.toLocaleString()}
+              p.votingTitle= vote.title

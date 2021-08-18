@@ -5,28 +5,23 @@ html
     link(rel="stylesheet", href="/stylesheets/login.css")
     include partials/appName
   body
-    div(class="background")
-      div(class="container")
-        h1(class="appHeader") BLUE VOTE
-        p(class="subHeader") Welcome to Blue Vote <br> Make your own votes
-        p(class="message")= message
+    .background
+      .container
+        h1.appHeader BLUE VOTE
+        p.subHeader Welcome to Blue Vote <br> Make your own votes
+        p.message= message
+
         section
-          form(
-            class="loginForm"
-            action="/login"
-            method="POST"
-          )
-            input(
-              class="email"
+          form.loginForm(action="/login" method="POST")
+            input.email(
               name="email"
               placeholder="vanilla@gmail.com"
             )
-            input(
-              class="password"
+            input.password(
               name="password"
               type="password"
               placeholder="✲✲✲✲✲✲✲✲"
             )
-            button(class="loginBtn" type="submit") LOGIN
+            button.loginBtn(type="submit") LOGIN
             a(href="/signUp")
-              button(class="signUpBtn" type="button") SIGN UP
+              button.signUpBtn(type="button") SIGN UP

@@ -10,10 +10,13 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  participatedVotings: {
-    type: [String],
-    default: undefined,
-  },
+  participatedVotings: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Vote',
+      default: undefined,
+    }
+  ],
 }, {
   versionKey: false,
 });

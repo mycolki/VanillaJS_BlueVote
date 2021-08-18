@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 
 const voteSchema = new mongoose.Schema({
   createUser: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
     required: true,
   },
   title: {
@@ -11,7 +12,7 @@ const voteSchema = new mongoose.Schema({
   },
   expiredAt: {
     type: Date,
-    default: Date.now(),
+    default: new Date().toISOString(),
   },
   options: [
     {
