@@ -5,8 +5,10 @@ html
     link(rel="stylesheet", href="/stylesheets/newVoting.css")
     include partials/appName
   body
-    div(class="background")
-      div(class="container")
+    .background
+      .container
       h1 투표 만들기를 실패했습니다
       h2 아래 내용을 확인하고 다시 만들어 주세요 😀
-      p =message
+      p= status
+      p= message
+      p= stack

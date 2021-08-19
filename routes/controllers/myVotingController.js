@@ -12,7 +12,7 @@ exports.viewMyVotingPage = async function (req, res, next) {
 
     return res.render('myVoting', {
       email,
-      votes
+      votes,
     });
   } catch (err) {
     if (err instanceof mongoose.Error.ValidationError) {

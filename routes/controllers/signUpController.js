@@ -32,7 +32,13 @@ exports.signUpNewUser = async function (req, res, next) {
         });
     }
   } catch {
-    return next(createError(500, 'Server Error'));
+    if (err instanceof mongoose.Error.ValidationError) {
+      for (field in err.errors) {
+        return next(500, err.errors[field].message);
+      }
+    }
+
+    next(createError(500, 'Server Error'));
   }
 
   if (!errors.isEmpty()) {
@@ -59,7 +65,13 @@ exports.signUpNewUser = async function (req, res, next) {
       password: hashedPassword,
     });
   } catch {
-    return next(createError(500, 'Server Error'));
+    if (err instanceof mongoose.Error.ValidationError) {
+      for (field in err.errors) {
+        return next(500, err.errors[field].message);
+      }
+    }
+
+    next(createError(500, 'Server Error'));
   }
 
   res.redirect('/login');

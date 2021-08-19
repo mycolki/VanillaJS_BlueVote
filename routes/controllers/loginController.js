@@ -8,7 +8,7 @@ exports.viewLoginPage = function (req, res, next) {
 exports.authenticateUser = function (req, res, next) {
   passport.authenticate(
     'local',
-    function(err, user, message) {
+    function (err, user, message) {
       if (err) {
         if (err instanceof mongoose.Error.ValidationError) {
           for (field in err.errors) {

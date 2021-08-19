@@ -15,6 +15,6 @@ exports.viewMainPage = async function (req, res, next) {
       }
     }
 
-    return next(createError(500, 'Server Error'));
+    next(createError(500, 'Server Error'));
   }
 };
