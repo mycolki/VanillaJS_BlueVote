@@ -4,6 +4,7 @@ const router = express.Router();
 const { body } = require('express-validator');
 
 const votingsController = require('./controllers/votingsController');
+const validateObjectId = require('./middlewares/validateObjectId');
 
 router.get('/new', votingsController.viewNewVotingPage);
 router.get('/success', votingsController.viewSuccessPage);
@@ -15,8 +16,8 @@ router.post('/new',
   votingsController.createVoting
 );
 
-router.get('/:id', votingsController.viewSelectedVoting);
-router.post('/:id', votingsController.participateVoting);
-router.delete('/:id', votingsController.deleteVoting);
+router.get('/:id', validateObjectId, votingsController.viewSelectedVoting);
+router.post('/:id', validateObjectId, votingsController.participateVoting);
+router.delete('/:id', validateObjectId, votingsController.deleteVoting);
 
 module.exports = router;

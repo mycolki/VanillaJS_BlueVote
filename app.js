@@ -57,7 +57,7 @@ app.use('/votings', redirectLoginNotLoggedIn, votings);
 app.use('/myVoting', redirectLoginNotLoggedIn, myVotings);
 
 app.use(function (req, res, next) {
-  next(createError(404));
+  next(createError(404, 'Not Found Page'));
 });
 
 app.use(function (err, req, res, next) {
