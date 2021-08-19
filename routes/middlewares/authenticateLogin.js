@@ -1,4 +1,4 @@
-function showLoginPageNotLoginUser(req, res, next) {
+function redirectLoginNotLoggedIn(req, res, next) {
   if (!req.isAuthenticated()) {
     return res.redirect('/login');
   }
@@ -6,7 +6,7 @@ function showLoginPageNotLoginUser(req, res, next) {
   next();
 }
 
-function showMainPageLoginUser(req, res, next) {
+function redirectMainLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     return res.redirect('/');
   }
@@ -15,6 +15,6 @@ function showMainPageLoginUser(req, res, next) {
 }
 
 module.exports = {
-  showLoginPageNotLoginUser,
-  showMainPageLoginUser,
+  redirectLoginNotLoggedIn,
+  redirectMainLoggedIn,
 };

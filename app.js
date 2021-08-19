@@ -45,13 +45,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser(process.env.SECRET_COOKIE_ID));
 
-const { showLoginPageNotLoginUser, showMainPageLoginUser } = require('./routes/middlewares/authenticateLogin');
+const { redirectLoginNotLoggedIn, redirectMainLoggedIn } = require('./routes/middlewares/authenticateLogin');
 
-app.use('/signUp', showMainPageLoginUser, signUp);
-app.use('/login', showMainPageLoginUser, login);
-app.use('/', showLoginPageNotLoginUser, main);
-app.use('/votings', showLoginPageNotLoginUser, votings);
-app.use('/myVoting', showLoginPageNotLoginUser, myVotings);
+app.use('/signUp', redirectMainLoggedIn, signUp);
+app.use('/login', redirectMainLoggedIn, login);
+app.use('/', redirectLoginNotLoggedIn, main);
+app.use('/votings', redirectLoginNotLoggedIn, votings);
+app.use('/myVoting', redirectLoginNotLoggedIn, myVotings);
 
 app.use(function (req, res, next) {
   next(createError(404));
