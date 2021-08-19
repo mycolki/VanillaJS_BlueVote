@@ -3,6 +3,7 @@ mongoose.set('useFindAndModify', false);
 
 const { validationResult } = require('express-validator');
 const createError = require('http-errors');
+const isAfter = require('date-fns/isAfter');
 
 const Vote = require('../../models/Vote');
 const User = require('../../models/User');
@@ -32,6 +33,7 @@ exports.createVoting = async function (req, res, next) {
 
   const { _id } = req.user;
   const { title, expiredAt, options } = req.body;
+
   const errors = validationResult(req);
   const optionList = [];
   const allErrors = {};
@@ -82,25 +84,42 @@ exports.createVoting = async function (req, res, next) {
 }
 
 exports.viewSelectedVoting = async function (req, res, next) {
-  const { id } = req.params;
+  const userId = req.user._id;
+  const voteId = req.params.id;
+  const currentDate = new Date().toISOString();
+
   let isActive = false;
   let comment = '가슴에 손을 얹고 솔직하게 투표해주시기 바랍니다';
 
   try {
-    const vote = await Vote.findOne({ _id: id }).exec();
-    const isParticipatedVote = await User.exists({ participatedVotings: id });
+    const vote = await Vote.findOne({ _id: voteId }).exec();
+    const isParticipatedVote = await User.exists({ participatedVotings: voteId });
+
+    let isCreateUser = false;
+    let isExpired = false;
+
+    if (String(vote.createUser) === String(userId)) {
+      isCreateUser = true;
+    }
 
     if (isParticipatedVote) {
       isActive = true;
       comment = '이미 참여한 투표는 재투표 할 수 없습니다';
     }
 
+    // if (isAfter(new Date(currentDate)), new Date(vote.expiredAt)) {
+    //   console.log('dd')
+    //   isExpired = true;
+    // }
+
     return res.render('selectedVoting', {
       comment,
-      id,
+      id: voteId,
       vote,
       options: vote.options,
       isActive,
+      isCreateUser,
+      // isExpired,
     });
   } catch (err) {
     if (err instanceof mongoose.Error.ValidationError) {
@@ -114,9 +133,9 @@ exports.viewSelectedVoting = async function (req, res, next) {
 };
 
 exports.participateVoting = async function (req, res, next) {
+  const userId = req.user._id;
   const voteId = req.params.id;
   const optionId = req.body.option;
-  const userId = req.user._id;
 
   try {
     await Vote.findOneAndUpdate(
@@ -154,4 +173,27 @@ exports.participateVoting = async function (req, res, next) {
 
     next(createError(500, 'Server Error'));
   }
+};
+
+exports.deleteVoting = async function (req, res, next) {
+  const voteId = req.params.id;
+  const userId = req.user._id;
+
+  try {
+    const { createUser } = await Vote.findById(voteId).exec();
+
+    if (String(createUser) === String(userId)) {
+      await Vote.deleteOne({ _id: voteId });
+    }
+  } catch (err) {
+    if (err instanceof mongoose.Error.ValidationError) {
+      for (field in err.errors) {
+        return next(500, err.errors[field].message);
+      }
+    }
+
+    return next(createError(500, 'Server Error'));
+  }
+
+  res.redirect('/');
 };

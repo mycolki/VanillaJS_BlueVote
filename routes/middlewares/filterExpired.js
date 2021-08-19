@@ -19,7 +19,7 @@ async function filterNotExpired(req, res, next) {
       }
     }
 
-    next(createError(500, 'Server Error'));
+    return next(createError(500, 'Server Error'));
   }
 
   next();
@@ -35,7 +35,6 @@ async function filterExpired(req, res, next) {
       .filter(vote => isAfter(new Date(currentDate), new Date(vote.expiredAt)));
 
     res.locals.filtered = votes;
-    // return res.render('ongoing', { votes });
   } catch (err) {
     if (err instanceof mongoose.Error.ValidationError) {
       for (field in err.errors) {
@@ -43,7 +42,7 @@ async function filterExpired(req, res, next) {
       }
     }
 
-    next(createError(500, 'Server Error'));
+    return next(createError(500, 'Server Error'));
   }
 
   next();

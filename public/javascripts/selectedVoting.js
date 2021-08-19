@@ -1,12 +1,12 @@
-const votingOptions = document.querySelectorAll('.votingOption');
+const votingOptionBtns = document.querySelectorAll('.votingOptionBtn');
 
 function preventBtnClick() {
-  for (const option of votingOptions) {
+  for (const option of votingOptionBtns) {
     option.setAttribute('disabled', true);
   }
 }
 
-for (const option of votingOptions) {
+for (const option of votingOptionBtns) {
   option.addEventListener('click', () => {
     option.classList.add('selected');
     setTimeout(() => {
@@ -14,17 +14,3 @@ for (const option of votingOptions) {
     })
   });
 }
-
-// function submitSelectedVoting() {
-//   console.log('dd')
-//   option.addEventListener('click', () => {
-//     option.classList.add('selected');
-//     preventBtnClick();
-//   });
-// }
-
-// const selectedVotingForm = document.querySelector('.selectedVotingForm');
-// selectedVotingForm.addEventListener('submit', () => {
-//   console.log('d')
-// });
-

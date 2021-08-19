@@ -117,6 +117,11 @@
   transform: translate(-50%, -50%);
 }
 
+.backToMainBtn:hover {
+  border: 0;
+  background-color: #FFFFFF30;
+}
+
 .mainSubTitle,
 .errorStatusCode,
 .errorMessage,

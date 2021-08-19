@@ -35,7 +35,8 @@
   text-align: center;
 }
 
-.votingOption {
+.votingOptionBtn {
+  position: relative;
   width: 360px;
   margin: 10px;
   padding: 10px 0 10px 0;
@@ -44,11 +45,23 @@
   color: white;
 }
 
-.votingOption:hover {
+.votingOptionBtn:hover {
   transform: scale(1.1);
   background-color: #FFFFFF70;
   font-weight: 800;
   color: #00A1DF;
+}
+
+.votingCount {
+  position: absolute;
+  top: 7px;
+  right: 20px;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  border-radius: 20px;
+  background-color: #00A1DF;
+  color: white;
 }
 
 .backToVotingListBtn,

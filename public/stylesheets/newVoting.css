@@ -92,11 +92,18 @@
 .addOptionBtn,
 .createVotingBtn {
   width: 160px;
-  color: white;
+  font-weight: 800;
+  color: #00A1DF;
 }
 
 .addOptionBtn {
   margin-right: 20px;
+}
+
+.addOptionBtn:hover,
+.createVotingBtn:hover {
+  font-style: italic;
+  transform: scaleX(1.05);
 }
 
 .addOptionMessage {
@@ -107,27 +114,9 @@
   color: white;
 }
 
-.goToMainBtn {
-  width: 360px;
-  height: 50px;
-  margin: 20px 0 20px 0;
-  outline: 0;
-  cursor: pointer;
-  font-size: 18px;
-  border: 2px solid white;
-  border-radius: 30px;
-  background-color: transparent;
-  color: white;
-}
-
-.goToMainBtn:hover {
-  border: 0;
-  background-color: #FFFFFF30;
-}
-
 .backToMainBtn {
   position: absolute;
-  top: 76%;
+  top: 80%;
   left: 50%;
   bottom: 0;
   width: 350px;
@@ -141,4 +130,9 @@
   background-color: transparent;
   color: white;
   transform: translate(-50%, -50%);
+}
+
+.backToMainBtn:hover {
+  border: 0;
+  background-color: #FFFFFF30;
 }

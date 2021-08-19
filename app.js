@@ -5,6 +5,7 @@ require('./config/passport');
 const express = require('express');
 const createError = require('http-errors');
 const cookieParser = require('cookie-parser');
+const methodOverride = require('method-override')
 
 const session = require('express-session');
 const passport = require('passport');
@@ -38,12 +39,14 @@ app.set('view engine', 'pug');
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(logger('dev'));
 app.use(cookieParser());
+app.use(cookieParser(process.env.SECRET_COOKIE_ID));
+app.use(methodOverride('_method'))
+app.use(logger('dev'));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(cookieParser(process.env.SECRET_COOKIE_ID));
 
 const { redirectLoginNotLoggedIn, redirectMainLoggedIn } = require('./routes/middlewares/authenticateLogin');
 

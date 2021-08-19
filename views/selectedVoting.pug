@@ -22,14 +22,21 @@ html
 
           form.selectedVotingForm(action=`/votings/${id}` method="POST")
             each info in options
-              button.votingOption(
+              button.votingOptionBtn(
                 name="option"
                 type="submit"
                 value=`${info._id}`
                 disabed=`${isActive}`
               )= info.option
+                if isCreateUser
+                  span.votingCount= info.votingCount
             a(href="/")
               button.backToVotingListBtn(type="button") 다른투표하기
-            button.removeVoteBtn(type="button") 삭제하기
+          if isCreateUser
+            form(action=`/votings/${id}?_method=DELETE` method="POST")
+              button.removeVoteBtn(
+                type="submit"
+                onclick="window.history.back()"
+              ) 삭제하기
 
     script(src="/javascripts/selectedVoting.js")

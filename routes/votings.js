@@ -3,19 +3,20 @@ const router = express.Router();
 
 const { body } = require('express-validator');
 
-const votingController = require('./controllers/votingController');
+const votingsController = require('./controllers/votingsController');
 
-router.get('/new', votingController.viewNewVotingPage);
-router.get('/success', votingController.viewSuccessPage);
+router.get('/new', votingsController.viewNewVotingPage);
+router.get('/success', votingsController.viewSuccessPage);
 
 router.post('/new',
   body('title').exists({ checkFalsy: true }).isString(),
   body('options').notEmpty(),
   body('expiredAt').exists({ checkFalsy: true }),
-  votingController.createVoting
+  votingsController.createVoting
 );
 
-router.get('/:id', votingController.viewSelectedVoting);
-router.post('/:id', votingController.participateVoting);
+router.get('/:id', votingsController.viewSelectedVoting);
+router.post('/:id', votingsController.participateVoting);
+router.delete('/:id', votingsController.deleteVoting);
 
 module.exports = router;
