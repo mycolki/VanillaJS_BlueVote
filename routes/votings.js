@@ -96,14 +96,16 @@ router.post('/new',
 
 router.get('/:id', async function (req, res, next) {
   const { id } = req.params;
-  console.log(id)
 
   try {
     const vote = await Vote.findOne({ _id: id }).exec();
-    console.log(vote)
-    return res.render('myVoting', { vote });
+    return res.render('selectedVoting', {
+      id,
+      vote,
+      options: vote.options,
+    });
   } catch (err) {
-    console.console.error();(err);
+    console.log(err)
   }
 
 });

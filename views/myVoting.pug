@@ -16,9 +16,10 @@ html
         p.mainSubTitle 너님이 만든 투표리스트를 확인해보세요 !
 
         section
-          #{vote}
+        each vote in votes
+          a(href=`/votings/${email}`)
             .votingContainer
               .votingInfo
-                span.creator= vote._id
+                span.creator= email
                 span.expiredTime #{vote.expiredAt.toLocaleString()}
               p.votingTitle= vote.title

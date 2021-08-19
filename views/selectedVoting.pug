@@ -1,0 +1,30 @@
+doctype html
+html
+  head
+    link(rel="stylesheet", href="/stylesheets/style.css")
+    link(rel="stylesheet", href="/stylesheets/main.css")
+    link(rel="stylesheet", href="/stylesheets/selectedVoting.css")
+    include partials/appName
+  body
+    .background
+      .container
+        header.mainHeader
+          a(href="/myVoting")
+            button.myVotingBtn(type="button" alt="profile") 🙍‍♀️
+          span.mainTitle BLUE VOTE
+          a(href="/votings/new")
+            button.newVotingBtn(type="button" alt="createNewVote") ➕
+        p.selectedVotingComment 가슴에 손을 얹고 솔직하게 투표해주시기 바랍니다
+
+        section.selectedVotingContainer
+          h1.selectedVotingTitle= vote.title
+          h2.selectedVotingExpiredAtText #{vote.expiredAt.toLocaleString() + ' 까지'}
+
+          form.selectedVotingForm(action=`/votings/#{id}` method="POST")
+            each info in options
+              .votingOption= info.option
+            button.submitVotingBtn(type="submit") 투표하기
+            a(href="/")
+              button.backToVotingListBtn(type="button") 다른 투표하기
+
+

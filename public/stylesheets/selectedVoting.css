@@ -1,0 +1,78 @@
+.selectedVotingComment {
+  margin: 0 0 20px 0;
+  font-size: 14px;
+  color: white;
+}
+
+.selectedVotingContainer {
+  width: 400px;
+  margin: auto;
+  text-align: center;
+  font-size: 14px;
+  outline: none;
+  border: 0;
+  background-color: transparent;
+  color: white;
+}
+
+.selectedVotingTitle {
+  margin: 30px auto 10px auto;
+  padding: 10px;
+  border-bottom: 2px solid #FFFFFF70;
+}
+
+.selectedVotingExpiredAtText {
+  height: 30px;
+  margin: 0 auto 10px auto;
+  font-size: 14px;
+}
+
+.selectedVotingForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.votingOption {
+  width: 360px;
+  height: 20px;
+  margin: 10px;
+  padding: 10px 0 10px 0;
+  cursor: pointer;
+  border-radius: 20px;
+  background-color: #FFFFFF40;
+}
+
+.votingOption:hover {
+  transform: scale(1.1);
+  background-color: #FFFFFF70;
+  font-weight: 800;
+  color: #00A1DF;
+}
+
+.submitVotingBtn,
+.backToVotingListBtn {
+  width: 360px;
+  height: 40px;
+  margin: 10px 0 10px 0;
+  font-size: 15px;
+  border: 2px solid white;
+  border-radius: 30px;
+  background-color: transparent;
+  color: white;
+}
+
+.submitVotingBtn:hover,
+.backToVotingListBtn:hover {
+  border: 0;
+  background-color: white;
+  color: #00A1DF;
+}
+
+.submitVotingBtn {
+  margin-top: 30px;
+  font-weight: 800;
+  background-color: #FFFFFF30;
+  color: #00A1DF;
+}
