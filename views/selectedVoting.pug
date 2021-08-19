@@ -28,7 +28,7 @@ html
                 value=`${info._id}`
                 disabed=`${isActive}`
               )= info.option
-                if isCreateUser
+                if (isCreateUser || isExpired)
                   span.votingCount= info.votingCount
             a(href="/")
               button.backToVotingListBtn(type="button") 다른투표하기

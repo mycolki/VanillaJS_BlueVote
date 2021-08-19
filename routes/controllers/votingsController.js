@@ -107,10 +107,9 @@ exports.viewSelectedVoting = async function (req, res, next) {
       comment = '이미 참여한 투표는 재투표 할 수 없습니다';
     }
 
-    // if (isAfter(new Date(currentDate)), new Date(vote.expiredAt)) {
-    //   console.log('dd')
-    //   isExpired = true;
-    // }
+    if (isAfter(new Date(currentDate), new Date(vote.expiredAt))) {
+      isExpired = true;
+    }
 
     return res.render('selectedVoting', {
       comment,
@@ -119,7 +118,7 @@ exports.viewSelectedVoting = async function (req, res, next) {
       options: vote.options,
       isActive,
       isCreateUser,
-      // isExpired,
+      isExpired,
     });
   } catch (err) {
     if (err instanceof mongoose.Error.ValidationError) {
@@ -138,6 +137,12 @@ exports.participateVoting = async function (req, res, next) {
   const optionId = req.body.option;
 
   try {
+    const isParticipatedVote = await User.exists({ participatedVotings: voteId });
+
+    if (isParticipatedVote) {
+      return;
+    }
+
     await Vote.findOneAndUpdate(
       {
         _id: voteId,
