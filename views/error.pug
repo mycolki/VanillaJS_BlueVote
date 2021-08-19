@@ -2,13 +2,22 @@ doctype html
 html
   head
     link(rel="stylesheet", href="/stylesheets/style.css")
-    link(rel="stylesheet", href="/stylesheets/newVoting.css")
+    link(rel="stylesheet", href="/stylesheets/main.css")
     include partials/appName
   body
     .background
       .container
-      h1 투표 만들기를 실패했습니다
-      h2 아래 내용을 확인하고 다시 만들어 주세요 😀
-      p= status
-      p= message
-      p= stack
+        header.mainHeader
+          a(href="/myVoting")
+            button.myVotingBtn(type="button" alt="profile") 🙍‍♀️
+          span.mainTitle BLUE VOTE
+          a(href="/votings/new")
+            button.newVotingBtn(type="button" alt="createNewVote") ➕
+
+        p.mainSubTitle 에러가 발생했습니다 ! <br> 에러 메시지를 확인해주세요
+        p.errorMessage= message
+        h3.errorStatusCode= status
+        p.errorStack= stack
+
+        a(href="/")
+          button.backToMainBtn(type="button") 모든 투표 보기

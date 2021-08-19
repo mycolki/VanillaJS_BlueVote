@@ -7,11 +7,10 @@ const votingController = require('./controllers/votingController');
 
 router.get('/new', votingController.viewNewVotingPage);
 router.get('/success', votingController.viewSuccessPage);
-router.get('/error', votingController.viewErrorPage);
 
 router.post('/new',
   body('title').exists({ checkFalsy: true }).isString(),
-  body('options').isLength({ min: 2 }).notEmpty(),
+  body('options').notEmpty(),
   body('expiredAt').exists({ checkFalsy: true }),
   votingController.createVoting
 );

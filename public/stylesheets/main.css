@@ -116,3 +116,15 @@
   color: white;
   transform: translate(-50%, -50%);
 }
+
+.mainSubTitle,
+.errorStatusCode,
+.errorMessage,
+.errorStack {
+  color: white;
+}
+
+.errorMessage {
+  margin-bottom: 0;
+  font-size: 40px;
+}

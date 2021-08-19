@@ -16,10 +16,6 @@ exports.viewSuccessPage = function (req, res, next) {
   res.render('success', { userId });
 };
 
-exports.viewErrorPage = function (req, res, next) {
-  res.render('error');
-};
-
 exports.createVoting = async function (req, res, next) {
   if (!req.user) {
     alert('로그인되지 않은 사용자입니다. 로그인페이지로 이동합니다');
