@@ -47,6 +47,10 @@
   transform: scale(1.05);
 }
 
+.votingSection {
+  overflow: auto;
+}
+
 .votingContainer {
   width: 400px;
   height: 50px;

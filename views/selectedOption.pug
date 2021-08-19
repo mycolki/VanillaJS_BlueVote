@@ -14,19 +14,17 @@ html
           span.mainTitle BLUE VOTE
           a(href="/votings/new")
             button.newVotingBtn(type="button" alt="createNewVote") ➕
-        p.selectedVotingComment= comment
+        p.selectedVotingComment 투표완료! 소중한 1표 감사합니다.
 
         section.selectedVotingContainer
-          h1.selectedVotingTitle= vote.title
-          h2.selectedVotingExpiredAtText #{vote.expiredAt.toLocaleString() + ' 까지'}
+          h1.selectedVotingTitle= updated.title
+          h2.selectedVotingExpiredAtText #{updated.expiredAt.toLocaleString() + ' 까지'}
 
-          form.selectedVotingForm(action=`/votings/${id}` method="POST")
+          form.selectedVotingForm
             each info in options
               button.votingOption(
                 name="option"
-                type="submit"
-                value=`${info._id}`
-                disalbed=`${isActive}`
+                disabled
               )= info.option
             a(href="/")
               button.backToVotingListBtn(type="button") 다른투표하기

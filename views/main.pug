@@ -19,7 +19,7 @@ html
           button.ongoingVoteBtn(type="button") 진행중인 투표
           button.finishedVoteBtn(type="button") 마감된 투표
 
-        section
+        section.votingSection
           each vote in votes
             a(href=`/votings/${vote._id}`)
               .votingContainer

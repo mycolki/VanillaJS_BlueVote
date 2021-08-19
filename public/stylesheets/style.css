@@ -24,6 +24,18 @@ button {
   box-shadow: 0px 1px 5px 3px rgba(0, 0, 0, 0.1);
 }
 
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
 .background {
   display: flex;
   justify-content: center;
