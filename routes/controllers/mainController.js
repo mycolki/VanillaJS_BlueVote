@@ -1,5 +1,6 @@
-const Vote = require('../../models/Vote');
 const createError = require('http-errors');
+
+const Vote = require('../../models/Vote');
 
 exports.viewMainPage = async function (req, res, next) {
   try {
@@ -7,7 +8,10 @@ exports.viewMainPage = async function (req, res, next) {
       .find({})
       .populate('createUser', 'email');
 
-    return res.render('main', { votes });
+    return res.render('main', {
+      votes,
+      isFiltered: false,
+    });
   } catch (err) {
     if (err instanceof mongoose.Error.ValidationError) {
       for (field in err.errors) {
@@ -17,4 +21,11 @@ exports.viewMainPage = async function (req, res, next) {
 
     next(createError(500, 'Server Error'));
   }
+};
+
+exports.viewFilteredVotes = async function (req, res, next) {
+  return res.render('main', {
+    votes: res.locals.filtered,
+    isFiltered: true,
+  });
 };

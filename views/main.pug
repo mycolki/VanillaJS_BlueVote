@@ -16,8 +16,10 @@ html
         p.mainSubTitle 당신의 투표권을 행사하세요 !
 
         nav.selectButtons
-          button.ongoingVoteBtn(type="button") 진행중인 투표
-          button.finishedVoteBtn(type="button") 마감된 투표
+          a(href="/ongoing")
+            button.ongoingVoteBtn(type="button") 진행중인 투표
+          a(href="finished")
+            button.finishedVoteBtn(type="button") 마감된 투표
 
         section.votingSection
           each vote in votes
@@ -27,4 +29,6 @@ html
                   span.creator= vote.createUser.email
                   span.expiredTime #{vote.expiredAt.toLocaleString()}
                 p.votingTitle= vote.title
-
+        if isFiltered
+          a(href="/")
+            button.backToMainBtn(type="button") 모든 투표 보기

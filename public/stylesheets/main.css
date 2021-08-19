@@ -1,3 +1,8 @@
+.votingSection {
+  height: 500px;
+  overflow-y: scroll;
+}
+
 .mainHeader {
   display: flex;
   justify-content: space-between;
@@ -92,4 +97,22 @@
   margin: 0;
   font-weight: 800;
   font-style: italic;
+}
+
+.backToMainBtn {
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  bottom: 0;
+  width: 350px;
+  height: 45px;
+  margin: 100px 0 20px 0;
+  outline: 0;
+  cursor: pointer;
+  font-size: 14px;
+  border: 2px solid #FFFFFF70;
+  border-radius: 30px;
+  background-color: transparent;
+  color: white;
+  transform: translate(-50%, -50%);
 }

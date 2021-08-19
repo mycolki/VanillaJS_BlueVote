@@ -15,11 +15,13 @@ html
             button.newVotingBtn(type="button" alt="createNewVote") ➕
         p.mainSubTitle 너님이 만든 투표리스트를 확인해보세요 !
 
-        section
-        each vote in votes
-          a(href=`/votings/${email}`)
-            .votingContainer
-              .votingInfo
-                span.creator= email
-                span.expiredTime #{vote.expiredAt.toLocaleString()}
-              p.votingTitle= vote.title
+        section.votingSection
+          each vote in votes
+            a(href=`/votings/${email}`)
+              .votingContainer
+                .votingInfo
+                  span.creator= email
+                  span.expiredTime #{vote.expiredAt.toLocaleString()}
+                p.votingTitle= vote.title
+        a(href="/")
+          button.backToMainBtn(type="button") 메인으로 돌아가기
