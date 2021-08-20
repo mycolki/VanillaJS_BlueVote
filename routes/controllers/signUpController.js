@@ -32,6 +32,8 @@ exports.signUpNewUser = async function (req, res, next) {
         .render(VIEW.SIGN_UP, VALIDATION.EXIST_EMAIL);
     }
   } catch {
+    console.error(err);
+
     if (err instanceof mongoose.Error.ValidationError) {
       for (field in err.errors) {
         return next(500, err.errors[field].message);
@@ -65,6 +67,8 @@ exports.signUpNewUser = async function (req, res, next) {
       password: hashedPassword,
     });
   } catch {
+    console.error(err);
+
     if (err instanceof mongoose.Error.ValidationError) {
       for (field in err.errors) {
         return next(500, err.errors[field].message);

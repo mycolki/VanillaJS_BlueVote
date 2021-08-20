@@ -16,6 +16,8 @@ exports.viewMainPage = async function (req, res, next) {
       isFiltered: false,
     });
   } catch (err) {
+    console.error(err);
+
     if (err instanceof mongoose.Error.ValidationError) {
       for (field in err.errors) {
         return next(500, err.errors[field].message);

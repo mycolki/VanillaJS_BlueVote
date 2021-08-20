@@ -26,6 +26,7 @@ passport.use(new LocalStrategy(
 
       done(null, user);
     } catch (err) {
+      console.error(err);
       done(err);
     }
   }

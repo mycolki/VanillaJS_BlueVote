@@ -73,6 +73,8 @@ exports.createVoting = async function (req, res, next) {
       options: optionList,
     });
   } catch (err) {
+    console.error(err);
+
     if (err instanceof mongoose.Error.ValidationError) {
       for (field in err.errors) {
         return next(500, err.errors[field].message);
@@ -122,6 +124,8 @@ exports.viewSelectedVoting = async function (req, res, next) {
       isParticipatedVote,
     });
   } catch (err) {
+    console.error(err);
+
     if (err instanceof mongoose.Error.ValidationError) {
       for (field in err.errors) {
         return next(500, err.errors[field].message);
@@ -150,6 +154,8 @@ exports.participateVoting = async function (req, res, next) {
       }
     );
   } catch (err) {
+    console.error(err);
+
     if (err instanceof mongoose.Error.ValidationError) {
       for (field in err.errors) {
         return next(500, err.errors[field].message);
@@ -165,6 +171,8 @@ exports.participateVoting = async function (req, res, next) {
       { $push: { participatedVotings: voteId } },
     );
   } catch (err) {
+    console.error(err);
+
     if (err instanceof mongoose.Error.ValidationError) {
       for (field in err.errors) {
         return next(500, err.errors[field].message);
@@ -188,6 +196,8 @@ exports.deleteVoting = async function (req, res, next) {
       await Vote.deleteOne({ _id: voteId });
     }
   } catch (err) {
+    console.error(err);
+
     if (err instanceof mongoose.Error.ValidationError) {
       for (field in err.errors) {
         return next(500, err.errors[field].message);

@@ -17,6 +17,8 @@ async function validateObjectId(req, res, next) {
       return next(createError(400, 'Bad Request'));
     }
   } catch (err) {
+    console.error(err);
+
     if (err instanceof mongoose.Error.ValidationError) {
       for (field in err.errors) {
         return next(500, err.errors[field].message);
