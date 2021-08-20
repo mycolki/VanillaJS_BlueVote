@@ -24,12 +24,10 @@ $addOptionBtn.addEventListener('click', () => {
 
   const $optionRow = createElementWithClass('div', 'optionRow');
   const $option = createElementWithClass('input', 'option', 'text');
-  const $removeOptionBtn = createElementWithClass('button', 'removeOptionBtn', 'button', 'remove');
 
   $option.setAttribute('name', 'options');
   $option.setAttribute('maxlength', '25');
-  $removeOptionBtn.textContent = '➖';
 
-  $optionRow.append($option, $removeOptionBtn);
+  $optionRow.append($option);
   $newVotingForm.insertBefore($optionRow, $addOptionMessage);
 });
