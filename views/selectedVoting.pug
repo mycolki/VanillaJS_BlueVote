@@ -22,12 +22,14 @@ html
 
           form.selectedVotingForm(action=`/votings/${id}` method="POST")
             each info in options
-              button.votingOptionBtn(
+              button(
+                class=isParticipatedVote ? "votedOptionBtn" : "votingOptionBtn"
                 name="option"
                 type="submit"
                 value=`${info._id}`
                 disabed=`${isActive}`
               )= info.option
+
                 if (isCreateUser || isExpired)
                   span.votingCount= info.votingCount
             a(href="/")

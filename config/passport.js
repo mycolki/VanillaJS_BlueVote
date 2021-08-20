@@ -13,7 +13,7 @@ passport.use(new LocalStrategy(
   async function (email, password, done) {
     try {
       const user = await User.findOne({ email });
-      // 이메일과 비번 모두 입력해야 로긴누를수 있게 프론트단에서 처리해주기
+
       if (!user) {
         return done(null, false, '입력하신 계정과 일치하는 계정이 없습니다.');
       }

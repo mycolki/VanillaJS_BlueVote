@@ -35,7 +35,8 @@
   text-align: center;
 }
 
-.votingOptionBtn {
+.votingOptionBtn,
+.votedOptionBtn {
   position: relative;
   width: 360px;
   margin: 10px;
@@ -44,6 +45,11 @@
   background-color: #FFFFFF40;
   color: white;
   transition: transform 100ms ease-in;
+}
+
+.votedOptionBtn {
+  cursor: not-allowed;
+  background-color: lightgray;
 }
 
 .votingOptionBtn:hover {

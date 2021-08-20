@@ -133,3 +133,8 @@
   margin-bottom: 0;
   font-size: 40px;
 }
+
+.errorStack {
+  height: 320px;
+  overflow-y: scroll;
+}

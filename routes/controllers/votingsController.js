@@ -122,6 +122,7 @@ exports.viewSelectedVoting = async function (req, res, next) {
       isActive,
       isCreateUser,
       isExpired,
+      isParticipatedVote,
     });
   } catch (err) {
     if (err instanceof mongoose.Error.ValidationError) {
