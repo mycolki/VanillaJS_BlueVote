@@ -8,8 +8,12 @@ const isAfter = require('date-fns/isAfter');
 const Vote = require('../../models/Vote');
 const User = require('../../models/User');
 
+const { VALIDATION, VOTING_COMMENT, FORMS } = require('../../constants/uiMessage');
+const { SERVER_ERROR } = require('../../constants/errorMessage');
 const { ROUTE, VOTINGS } = require('../../constants/route');
 const VIEW = require('../../constants/view');
+
+const forms = { title: FORMS.TITLE, expiredAt: FORMS.EXPIRED_AT, options: FORMS.OPTIONS };
 
 exports.viewNewVotingPage = function (req, res, next) {
   res.render(VIEW.NEW_VOTING);
@@ -22,16 +26,14 @@ exports.viewSuccessPage = function (req, res, next) {
 
 exports.createVoting = async function (req, res, next) {
   if (!req.user) {
-    alert('로그인되지 않은 사용자입니다. 로그인페이지로 이동합니다');
+    alert(VALIDATION.REDIRECT_NOT_LOGGED_IN_USER);
     return res.redirect(ROUTE.LOGIN);
   }
 
   if (!req.body) {
     return res
       .status(400)
-      .render(VIEW.NEW_VOTING, {
-        message: '빈칸을 모두 입력하고 투표만들기 버튼을 눌러주세요'
-      });
+      .render(VIEW.NEW_VOTING, VALIDATION.FILL_ALL_BLANKS);
   }
 
   const { _id } = req.user;
@@ -42,15 +44,14 @@ exports.createVoting = async function (req, res, next) {
   const allErrors = {};
 
   if (!errors.isEmpty()) {
-    const params = { title: '투표 주제', expiredAt: '투표 마감시간', options: '선택지' };
-    errors.array().forEach(error => allErrors[error.param] = params[error.param]);
+    errors.array().forEach(error => allErrors[error.param] = forms[error.param]);
 
     const invalidInputs = Object.values(allErrors).join(', ');
 
     return res
       .status(400)
       .render(VIEW.NEW_VOTING, {
-        message: `${invalidInputs} 항목을 조건에 맞게 다시 입력해주세요.`
+        message: invalidInputs + VALIDATION.INPUT_BY_CONDITION
       });
   }
 
@@ -58,9 +59,7 @@ exports.createVoting = async function (req, res, next) {
     if (!option) {
       return res
         .status(400)
-        .render(VIEW.NEW_VOTING, {
-          message: '비어있는 선택지가 없도록 모두 입력해주세요'
-        });
+        .render(VIEW.NEW_VOTING, VALIDATION.FILL_OPTION_BLANKS);
     }
 
     optionList.push({ option, votingCount: 0 });
@@ -80,7 +79,7 @@ exports.createVoting = async function (req, res, next) {
       }
     }
 
-    return next(createError(500, 'Server Error'));
+    return next(createError(500, SERVER_ERROR));
   }
 
   res.redirect(VOTINGS.ROUTE_SUCCESS);
@@ -92,7 +91,7 @@ exports.viewSelectedVoting = async function (req, res, next) {
   const currentDate = new Date().toISOString();
 
   let isActive = false;
-  let comment = '가슴에 손을 얹고 솔직하게 투표해주시기 바랍니다';
+  let comment = VOTING_COMMENT.FIRST_VOTE;
 
   try {
     const vote = await Vote.findOne({ _id: voteId }).exec();
@@ -107,7 +106,7 @@ exports.viewSelectedVoting = async function (req, res, next) {
 
     if (isParticipatedVote) {
       isActive = true;
-      comment = '이미 참여한 투표는 재투표 할 수 없습니다';
+      comment = VOTING_COMMENT.RE_VOTE;
     }
 
     if (isAfter(new Date(currentDate), new Date(vote.expiredAt))) {
@@ -131,7 +130,7 @@ exports.viewSelectedVoting = async function (req, res, next) {
       }
     }
 
-    return next(createError(500, 'Server Error'));
+    return next(createError(500, SERVER_ERROR));
   }
 };
 
@@ -167,7 +166,7 @@ exports.participateVoting = async function (req, res, next) {
       }
     }
 
-    return next(createError(500, 'Server Error'));
+    return next(createError(500, SERVER_ERROR));
   }
 
   try {
@@ -182,7 +181,7 @@ exports.participateVoting = async function (req, res, next) {
       }
     }
 
-    next(createError(500, 'Server Error'));
+    next(createError(500, SERVER_ERROR));
   }
 };
 
@@ -203,7 +202,7 @@ exports.deleteVoting = async function (req, res, next) {
       }
     }
 
-    return next(createError(500, 'Server Error'));
+    return next(createError(500, SERVER_ERROR));
   }
 
   res.redirect(ROUTE.MAIN);

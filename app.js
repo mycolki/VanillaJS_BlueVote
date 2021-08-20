@@ -24,6 +24,7 @@ const {
   redirectMainLoggedIn
 } = require('./routes/middlewares/authenticateLogin');
 
+const { NOT_FOUND_ERROR } = require('./constants/errorMessage');
 const { ROUTE } = require('./constants/route');
 const VIEW = require('./constants/view');
 const MAX_AGE = 60 * 60 * 1000;
@@ -64,7 +65,7 @@ app.use(ROUTE.VOTINGS, redirectLoginNotLoggedIn, votings);
 app.use(ROUTE.MY_VOTINGS, redirectLoginNotLoggedIn, myVotings);
 
 app.use(function (req, res, next) {
-  next(createError(404, 'Not Found Page'));
+  next(createError(404, NOT_FOUND_ERROR));
 });
 
 app.use(function (err, req, res, next) {

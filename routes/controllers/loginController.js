@@ -1,6 +1,7 @@
 const passport = require('passport');
 const createError = require('http-errors');
 
+const { SERVER_ERROR } = require('../../constants/errorMessage');
 const { ROUTE } = require('../../constants/route');
 const VIEW = require('../../constants/view');
 
@@ -19,7 +20,7 @@ exports.authenticateUser = function (req, res, next) {
           }
         }
 
-        return next(createError(500, 'Server Error'));
+        return next(createError(500, SERVER_ERROR));
       }
 
       if (!user) {
@@ -30,7 +31,7 @@ exports.authenticateUser = function (req, res, next) {
 
       req.logIn(user, function (err) {
         if (err) {
-          return next(createError(500, 'Server Error'));
+          return next(createError(500, SERVER_ERROR));
         }
 
         res.redirect(ROUTE.MAIN);

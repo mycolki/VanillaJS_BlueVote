@@ -2,6 +2,8 @@ const isAfter = require('date-fns/isAfter');
 
 const Vote = require('../../models/Vote');
 
+const { SERVER_ERROR } = require('../../constants/errorMessage');
+
 async function filterNotExpired(req, res, next) {
   const currentDate = new Date().toISOString();
 
@@ -19,7 +21,7 @@ async function filterNotExpired(req, res, next) {
       }
     }
 
-    return next(createError(500, 'Server Error'));
+    return next(createError(500, SERVER_ERROR));
   }
 
   next();
@@ -42,7 +44,7 @@ async function filterExpired(req, res, next) {
       }
     }
 
-    return next(createError(500, 'Server Error'));
+    return next(createError(500, SERVER_ERROR));
   }
 
   next();

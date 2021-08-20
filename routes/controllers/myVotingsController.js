@@ -3,6 +3,7 @@ const createError = require('http-errors');
 const Vote = require('../../models/Vote');
 const User = require('../../models/User');
 
+const { SERVER_ERROR } = require('../../constants/errorMessage');
 const VIEW = require('../../constants/view');
 
 exports.viewMyVotingPage = async function (req, res, next) {
@@ -23,6 +24,6 @@ exports.viewMyVotingPage = async function (req, res, next) {
       }
     }
 
-    next(createError(500, 'Server Error'));
+    next(createError(500, SERVER_ERROR));
   }
 };

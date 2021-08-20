@@ -10,8 +10,6 @@ for (const option of votingOptionBtns) {
   option.addEventListener('click', () => {
     option.classList.add('selected');
 
-    setTimeout(() => {
-      preventBtnClick();
-    })
+    setTimeout(() => preventBtnClick());
   });
 }

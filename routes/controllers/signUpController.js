@@ -1,11 +1,12 @@
 const { validationResult } = require('express-validator');
 const createError = require('http-errors');
-
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 const User = require('../../models/User');
 
+const { SERVER_ERROR } = require('../../constants/errorMessage');
+const { VALIDATION } = require('../../constants/uiMessage');
 const { ROUTE } = require('../../constants/route');
 const VIEW = require('../../constants/view');
 
@@ -17,9 +18,7 @@ exports.signUpNewUser = async function (req, res, next) {
   if (!req.body) {
     return res
       .status(400)
-      .render(VIEW.SIGN_UP, {
-        message: 'email 과 password를 입력해주세요'
-      });
+      .render(VIEW.SIGN_UP, VALIDATION.EMAIL_PW);
   }
 
   const { email, password, checkedPassword } = req.body;
@@ -30,9 +29,7 @@ exports.signUpNewUser = async function (req, res, next) {
     if (await User.exists({ email })) {
       return res
         .status(400)
-        .render(VIEW.SIGN_UP, {
-          message: '이미 가입되어 있는 email입니다'
-        });
+        .render(VIEW.SIGN_UP, VALIDATION.EXIST_EMAIL);
     }
   } catch {
     if (err instanceof mongoose.Error.ValidationError) {
@@ -41,7 +38,7 @@ exports.signUpNewUser = async function (req, res, next) {
       }
     }
 
-    return next(createError(500, 'Server Error'));
+    return next(createError(500, SERVER_ERROR));
   }
 
   if (!errors.isEmpty()) {
@@ -52,16 +49,14 @@ exports.signUpNewUser = async function (req, res, next) {
     return res
       .status(400)
       .render(VIEW.SIGN_UP, {
-        message: `${invalidInputs} 형식이 잘못 되었습니다. 다시 입력해주세요.`
+        message: invalidInputs + VALIDATION.MALFORMED_INFO
       });
   }
 
   if (password !== checkedPassword) {
     return res
       .status(400)
-      .render(VIEW.SIGN_UP, {
-        message: '비밀번호와 확인용 비밀번호가 일치하지 않습니다.'
-      });
+      .render(VIEW.SIGN_UP, VALIDATION.NOT_EQUAL_PW);
   }
 
   try {
@@ -76,7 +71,7 @@ exports.signUpNewUser = async function (req, res, next) {
       }
     }
 
-    return next(createError(500, 'Server Error'));
+    return next(createError(500, SERVER_ERROR));
   }
 
   res.redirect(ROUTE.LOGIN);
