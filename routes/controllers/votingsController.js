@@ -88,7 +88,7 @@ exports.createVoting = async function (req, res, next) {
 exports.viewSelectedVoting = async function (req, res, next) {
   const { voteId } = req.params;
   const { _id } = req.user;
-  const currentDate = new Date().toISOString();
+  const currentDate = new Date();
 
   let comment = VOTING_COMMENT.FIRST_VOTE;
   let isParticipatedVote = false;
@@ -171,8 +171,10 @@ exports.participateVoting = async function (req, res, next) {
       }
     }
 
-    next(createError(500, SERVER_ERROR));
+    return next(createError(500, SERVER_ERROR));
   }
+
+  res.redirect(`/votings/${voteId}`);
 };
 
 exports.deleteVoting = async function (req, res, next) {
