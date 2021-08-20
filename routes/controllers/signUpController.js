@@ -6,15 +6,18 @@ const saltRounds = 10;
 
 const User = require('../../models/User');
 
+const { ROUTE } = require('../../constants/route');
+const VIEW = require('../../constants/view');
+
 exports.viewSignUpPage = function (req, res, next) {
-  res.render('signUp');
+  res.render(VIEW.SIGN_UP);
 };
 
 exports.signUpNewUser = async function (req, res, next) {
   if (!req.body) {
     return res
       .status(400)
-      .render('signUp', {
+      .render(VIEW.SIGN_UP, {
         message: 'email 과 password를 입력해주세요'
       });
   }
@@ -27,7 +30,7 @@ exports.signUpNewUser = async function (req, res, next) {
     if (await User.exists({ email })) {
       return res
         .status(400)
-        .render('signUp', {
+        .render(VIEW.SIGN_UP, {
           message: '이미 가입되어 있는 email입니다'
         });
     }
@@ -38,15 +41,17 @@ exports.signUpNewUser = async function (req, res, next) {
       }
     }
 
-    next(createError(500, 'Server Error'));
+    return next(createError(500, 'Server Error'));
   }
 
   if (!errors.isEmpty()) {
-    const invalidInputs = errors.array().map(error => error.param).join(', ');
+    const invalidInputs = errors.array()
+      .map(error => error.param)
+      .join(', ');
 
     return res
       .status(400)
-      .render('signUp', {
+      .render(VIEW.SIGN_UP, {
         message: `${invalidInputs} 형식이 잘못 되었습니다. 다시 입력해주세요.`
       });
   }
@@ -54,7 +59,7 @@ exports.signUpNewUser = async function (req, res, next) {
   if (password !== checkedPassword) {
     return res
       .status(400)
-      .render('signUp', {
+      .render(VIEW.SIGN_UP, {
         message: '비밀번호와 확인용 비밀번호가 일치하지 않습니다.'
       });
   }
@@ -71,8 +76,8 @@ exports.signUpNewUser = async function (req, res, next) {
       }
     }
 
-    next(createError(500, 'Server Error'));
+    return next(createError(500, 'Server Error'));
   }
 
-  res.redirect('/login');
+  res.redirect(ROUTE.LOGIN);
 };

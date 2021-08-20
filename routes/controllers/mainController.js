@@ -1,6 +1,7 @@
 const createError = require('http-errors');
 
 const Vote = require('../../models/Vote');
+const VIEW = require('../../constants/view');
 
 exports.viewMainPage = async function (req, res, next) {
   try {
@@ -8,7 +9,7 @@ exports.viewMainPage = async function (req, res, next) {
       .find({})
       .populate('createUser', 'email');
 
-    return res.render('main', {
+    return res.render(VIEW.MAIN, {
       votes,
       isFiltered: false,
     });
@@ -24,7 +25,7 @@ exports.viewMainPage = async function (req, res, next) {
 };
 
 exports.viewFilteredVotes = async function (req, res, next) {
-  return res.render('main', {
+  res.render(VIEW.MAIN, {
     votes: res.locals.filtered,
     isFiltered: true,
   });

@@ -19,6 +19,15 @@ const signUp = require('./routes/signUp');
 const votings = require('./routes/votings');
 const myVotings = require('./routes/myVotings');
 
+const {
+  redirectLoginNotLoggedIn,
+  redirectMainLoggedIn
+} = require('./routes/middlewares/authenticateLogin');
+
+const { ROUTE } = require('./constants/route');
+const VIEW = require('./constants/view');
+const MAX_AGE = 60 * 60 * 1000;
+
 const app = express();
 
 app.use(
@@ -29,7 +38,7 @@ app.use(
     cookie: {
       httpOnly: true,
       secure: false,
-      maxAge: 60 * 60 * 1000,
+      maxAge: MAX_AGE,
     },
   })
 );
@@ -48,25 +57,24 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-const { redirectLoginNotLoggedIn, redirectMainLoggedIn } = require('./routes/middlewares/authenticateLogin');
-
-app.use('/signUp', redirectMainLoggedIn, signUp);
-app.use('/login', redirectMainLoggedIn, login);
-app.use('/', redirectLoginNotLoggedIn, main);
-app.use('/votings', redirectLoginNotLoggedIn, votings);
-app.use('/myVoting', redirectLoginNotLoggedIn, myVotings);
+app.use(ROUTE.SIGNUP, redirectMainLoggedIn, signUp);
+app.use(ROUTE.LOGIN, redirectMainLoggedIn, login);
+app.use(ROUTE.MAIN, redirectLoginNotLoggedIn, main);
+app.use(ROUTE.VOTINGS, redirectLoginNotLoggedIn, votings);
+app.use(ROUTE.MY_VOTINGS, redirectLoginNotLoggedIn, myVotings);
 
 app.use(function (req, res, next) {
   next(createError(404, 'Not Found Page'));
 });
 
 app.use(function (err, req, res, next) {
+  console.log(err)
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   res
     .status(err.status || 500)
-    .render('error', {
+    .render(VIEW.ERROR, {
       status: err.status || 500,
       message: err.message,
       stack: err.stack || '',

@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-const myVotingController = require('./controllers/myVotingController');
+const myVotingsController = require('./controllers/myVotingsController');
 
-router.get('/', myVotingController.viewMyVotingPage);
+const { MY_VOTINGS } = require('../constants/route');
+
+router.get(MY_VOTINGS.BASE, myVotingsController.viewMyVotingPage);
 
 module.exports = router;

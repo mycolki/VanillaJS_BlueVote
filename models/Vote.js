@@ -27,7 +27,7 @@ const voteSchema = new mongoose.Schema({
     },
   ],
 }, {
-  versionKey: false,
+  versionKey: false
 });
 
 module.exports = mongoose.model('Vote', voteSchema);

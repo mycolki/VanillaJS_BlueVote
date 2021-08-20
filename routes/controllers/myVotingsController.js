@@ -3,6 +3,8 @@ const createError = require('http-errors');
 const Vote = require('../../models/Vote');
 const User = require('../../models/User');
 
+const VIEW = require('../../constants/view');
+
 exports.viewMyVotingPage = async function (req, res, next) {
   const { email } = req.user;
 
@@ -10,7 +12,7 @@ exports.viewMyVotingPage = async function (req, res, next) {
     const { _id } = await User.findOne({ email }).exec();
     const votes = await Vote.find({ createUser: _id }).exec();
 
-    return res.render('myVoting', {
+    return res.render(VIEW.MY_VOTINGS, {
       email,
       votes,
     });

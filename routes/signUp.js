@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
-
 const { body } = require('express-validator');
 
 const signUpController = require('./controllers/signUpController');
 
-router.get('/', signUpController.viewSignUpPage);
+const { SIGN_UP } = require('../constants/route');
 
-router.post('/',
+router.get(SIGN_UP.BASE, signUpController.viewSignUpPage);
+
+router.post(SIGN_UP.BASE,
   body('email').isEmail(),
   body('password').isLength({ min: 4, max: 8 }),
   signUpController.signUpNewUser

@@ -43,6 +43,7 @@
   border-radius: 20px;
   background-color: #FFFFFF40;
   color: white;
+  transition: transform 100ms ease-in;
 }
 
 .votingOptionBtn:hover {
@@ -74,6 +75,7 @@
   border-radius: 30px;
   background-color: transparent;
   color: white;
+  transition: transform 100ms ease-in;
 }
 
 .backToVotingListBtn:hover,

@@ -1,16 +1,19 @@
 const express = require('express');
 const router = express.Router();
-
 const { body } = require('express-validator');
 
 const votingsController = require('./controllers/votingsController');
 const validateObjectId = require('./middlewares/validateObjectId');
 
-router.get('/new', votingsController.viewNewVotingPage);
-router.get('/success', votingsController.viewSuccessPage);
+const { VOTINGS } = require('../constants/route');
 
-router.post('/new',
-  body('title').exists({ checkFalsy: true }).isString(),
+router.get(VOTINGS.NEW, votingsController.viewNewVotingPage);
+router.get(VOTINGS.SUCCESS, votingsController.viewSuccessPage);
+
+router.post(VOTINGS.NEW,
+  body('title')
+    .exists({ checkFalsy: true })
+    .isString(),
   body('options').notEmpty(),
   body('expiredAt').exists({ checkFalsy: true }),
   votingsController.createVoting

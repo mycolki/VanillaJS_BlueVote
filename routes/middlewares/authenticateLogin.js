@@ -1,6 +1,8 @@
+const { ROUTE } = require('../../constants/route');
+
 function redirectLoginNotLoggedIn(req, res, next) {
   if (!req.isAuthenticated()) {
-    return res.redirect('/login');
+    return res.redirect(ROUTE.LOGIN);
   }
 
   next();
@@ -8,7 +10,7 @@ function redirectLoginNotLoggedIn(req, res, next) {
 
 function redirectMainLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
-    return res.redirect('/');
+    return res.redirect(ROUTE.MAIN);
   }
 
   next();

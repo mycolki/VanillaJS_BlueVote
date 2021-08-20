@@ -8,25 +8,28 @@ const isAfter = require('date-fns/isAfter');
 const Vote = require('../../models/Vote');
 const User = require('../../models/User');
 
+const { ROUTE, VOTINGS } = require('../../constants/route');
+const VIEW = require('../../constants/view');
+
 exports.viewNewVotingPage = function (req, res, next) {
-  res.render('newVoting');
+  res.render(VIEW.NEW_VOTING);
 };
 
 exports.viewSuccessPage = function (req, res, next) {
   const userId = req.user.email.split('@')[0];
-  res.render('success', { userId });
+  res.render(VIEW.SUCCESS, { userId });
 };
 
 exports.createVoting = async function (req, res, next) {
   if (!req.user) {
     alert('로그인되지 않은 사용자입니다. 로그인페이지로 이동합니다');
-    return res.redirect('/login');
+    return res.redirect(ROUTE.LOGIN);
   }
 
   if (!req.body) {
     return res
       .status(400)
-      .render('newVoting', {
+      .render(VIEW.NEW_VOTING, {
         message: '빈칸을 모두 입력하고 투표만들기 버튼을 눌러주세요'
       });
   }
@@ -46,7 +49,7 @@ exports.createVoting = async function (req, res, next) {
 
     return res
       .status(400)
-      .render('newVoting', {
+      .render(VIEW.NEW_VOTING, {
         message: `${invalidInputs} 항목을 조건에 맞게 다시 입력해주세요.`
       });
   }
@@ -55,7 +58,7 @@ exports.createVoting = async function (req, res, next) {
     if (!option) {
       return res
         .status(400)
-        .render('newVoting', {
+        .render(VIEW.NEW_VOTING, {
           message: '비어있는 선택지가 없도록 모두 입력해주세요'
         });
     }
@@ -80,7 +83,7 @@ exports.createVoting = async function (req, res, next) {
     return next(createError(500, 'Server Error'));
   }
 
-  res.redirect('/votings/success');
+  res.redirect(VOTINGS.ROUTE_SUCCESS);
 }
 
 exports.viewSelectedVoting = async function (req, res, next) {
@@ -111,7 +114,7 @@ exports.viewSelectedVoting = async function (req, res, next) {
       isExpired = true;
     }
 
-    return res.render('selectedVoting', {
+    return res.render(VIEW.SELECTED_VOTING, {
       comment,
       id: voteId,
       vote,
@@ -137,7 +140,9 @@ exports.participateVoting = async function (req, res, next) {
   const optionId = req.body.option;
 
   try {
-    const isParticipatedVote = await User.exists({ participatedVotings: voteId });
+    const isParticipatedVote = await User.exists({
+      participatedVotings: voteId
+    });
 
     if (isParticipatedVote) {
       return;
@@ -200,5 +205,5 @@ exports.deleteVoting = async function (req, res, next) {
     return next(createError(500, 'Server Error'));
   }
 
-  res.redirect('/');
+  res.redirect(ROUTE.MAIN);
 };

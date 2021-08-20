@@ -1,8 +1,11 @@
 const passport = require('passport');
 const createError = require('http-errors');
 
+const { ROUTE } = require('../../constants/route');
+const VIEW = require('../../constants/view');
+
 exports.viewLoginPage = function (req, res, next) {
-  res.render('login');
+  res.render(VIEW.LOGIN);
 };
 
 exports.authenticateUser = function (req, res, next) {
@@ -22,7 +25,7 @@ exports.authenticateUser = function (req, res, next) {
       if (!user) {
         return res
           .status(400)
-          .render('login', { message });
+          .render(VIEW.LOGIN, { message });
       }
 
       req.logIn(user, function (err) {
@@ -30,7 +33,7 @@ exports.authenticateUser = function (req, res, next) {
           return next(createError(500, 'Server Error'));
         }
 
-        res.redirect('/');
+        res.redirect(ROUTE.MAIN);
       });
   })(req, res, next);
 };
