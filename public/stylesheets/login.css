@@ -14,7 +14,7 @@
   font-size: 20px;
   outline: none;
   border: 0;
-  border-bottom: 3px solid #FFFFFF70;
+  border-bottom: 3px solid #FFFFFF90;
   background-color: transparent;
   color: white;
 }
@@ -45,7 +45,7 @@
   height: 50px;
   margin-bottom: 20px;
   font-size: 15px;
-  border: 2px solid white;
+  border: 3px solid #FFFFFF90;
   border-radius: 30px;
   background-color: transparent;
   color: white;

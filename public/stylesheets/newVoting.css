@@ -18,7 +18,7 @@
   margin-top: 20px;
   outline: 0;
   border: 0;
-  border-bottom: 3px solid #00A1DF;
+  border-bottom: 2px solid #FFFFFF90;
   text-align: center;
   background-color: transparent;
   color: white;
@@ -32,7 +32,7 @@
   font-size: 14px;
   outline: none;
   border: 0;
-  border-bottom: 3px solid #00A1DF;
+  border-bottom: 2px solid #FFFFFF90;
   background-color: transparent;
   color: #00A1DF;
 }
@@ -65,7 +65,7 @@
   font-size: 14px;
   outline: 0;
   border: 0;
-  border-radius: 10px;
+  border-radius: 20px;
   background-color: #FFFFFF40;
   color: white;
 }
@@ -76,9 +76,9 @@
   height: 40px;
   font-weight: 800;
   line-height: 40px;
-  border-radius: 10px;
-  background-color: #00A1DF;
-  color: white;
+  border-radius: 20px;
+  background-color: #FFFFFF90;
+  color: #00A1DF;
 }
 
 .buttons {
@@ -94,9 +94,9 @@
 .addOptionBtn:hover,
 .createVotingBtn:hover {
   font-style: italic;
-  transform: scaleX(1.05);
-  background-color: #FFFFFF40;
-  color: #00A1DF;
+  transform: scale(1.1);
+  background-color: #00A1DF;
+  color: white;
 }
 
 .addOptionMessage {
@@ -109,7 +109,7 @@
 
 .backToMainBtn {
   position: absolute;
-  top: 80%;
+  top: 78%;
   left: 50%;
   bottom: 0;
   width: 350px;
