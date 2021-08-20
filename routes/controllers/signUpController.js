@@ -1,6 +1,6 @@
 const { validationResult } = require('express-validator');
 const createError = require('http-errors');
-const bcrypt = require('bcrypt');
+const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 
 const User = require('../../models/User');
@@ -22,7 +22,7 @@ exports.signUpNewUser = async function (req, res, next) {
   }
 
   const { email, password, checkedPassword } = req.body;
-  const hashedPassword = await bcrypt.hash(password, saltRounds);
+  const hashedPassword = await bcryptjs.hash(password, saltRounds);
   const errors = validationResult(req);
 
   try {

@@ -1,7 +1,7 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
-const bcrypt = require('bcrypt');
+const bcryptjs = require('bcryptjs');
 
 const User = require('../models/User');
 
@@ -18,7 +18,7 @@ passport.use(new LocalStrategy(
         return done(null, false, '입력하신 계정과 일치하는 계정이 없습니다.');
       }
 
-      const isPasswordCorrect = await bcrypt.compare(password, user.password);
+      const isPasswordCorrect = await bcryptjs.compare(password, user.password);
 
       if (!isPasswordCorrect) {
         return done(null, false, '패스워드가 일치하지 않습니다.');
