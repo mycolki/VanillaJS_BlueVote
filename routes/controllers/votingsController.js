@@ -87,7 +87,7 @@ exports.createVoting = async function (req, res, next) {
 
 exports.viewSelectedVoting = async function (req, res, next) {
   const { voteId } = req.params;
-  const userId = req.user._id;
+  const { _id } = req.user;
   const currentDate = new Date().toISOString();
 
   let comment = VOTING_COMMENT.FIRST_VOTE;
@@ -99,7 +99,7 @@ exports.viewSelectedVoting = async function (req, res, next) {
     const vote = await Vote.findOne({ _id: voteId }).exec();
     const isParticipatedVote = await User.exists({ participatedVotings: voteId });
 
-    if (String(vote.createUser) === String(userId)) {
+    if (String(vote.createUser) === String(_id)) {
       isCreateUser = true;
     }
 

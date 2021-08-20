@@ -1,6 +1,13 @@
 .votingSection {
   height: 500px;
   overflow-y: scroll;
+  overflow: auto;
+}
+
+.myVotingSection {
+  height: 420px;
+  overflow-y: scroll;
+  overflow: auto;
 }
 
 .mainHeader {
@@ -52,10 +59,6 @@
   transform: scale(1.05);
 }
 
-.votingSection {
-  overflow: auto;
-}
-
 .votingContainer {
   width: 400px;
   height: 50px;
@@ -99,9 +102,10 @@
   font-style: italic;
 }
 
-.backToMainBtn {
+.backToMainBtn,
+.logoutBtn {
   position: absolute;
-  top: 80%;
+  top: 72%;
   left: 50%;
   bottom: 0;
   width: 350px;
@@ -117,9 +121,19 @@
   transform: translate(-50%, -50%);
 }
 
+.logoutBtn {
+  top: 80%;
+  background-color: #FFFFFF30;
+}
+
 .backToMainBtn:hover {
   border: 0;
   background-color: #FFFFFF30;
+}
+
+.logoutBtn:hover {
+  border: 0;
+  background-color: transparent;
 }
 
 .mainSubTitle,

@@ -4,6 +4,7 @@ const Vote = require('../../models/Vote');
 const User = require('../../models/User');
 
 const { SERVER_ERROR } = require('../../constants/errorMessage');
+const { ROUTE } = require('../../constants/route');
 const VIEW = require('../../constants/view');
 
 exports.viewMyVotingPage = async function (req, res, next) {
@@ -26,4 +27,10 @@ exports.viewMyVotingPage = async function (req, res, next) {
 
     next(createError(500, SERVER_ERROR));
   }
+};
+
+exports.logout = function (req, res, next) {
+  req.logout();
+  req.session.destroy();
+  res.redirect(ROUTE.LOGIN);
 };

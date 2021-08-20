@@ -15,7 +15,7 @@ html
             button.newVotingBtn(type="button" alt="createNewVote") ➕
         p.mainSubTitle #{email.split('@')[0]} 님이 만든 투표리스트를 확인해보세요 !
 
-        section.votingSection
+        section.myVotingSection
           each vote in votes
             a(href=`/votings/${vote._id}`)
               .votingContainer
@@ -25,3 +25,5 @@ html
                 p.votingTitle= vote.title
         a(href="/")
           button.backToMainBtn(type="button") 메인으로 돌아가기
+        form.logoutForm(action="/myVotings" method="POST")
+          button.logoutBtn(type="submit") LOGOUT
