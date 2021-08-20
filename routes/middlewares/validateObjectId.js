@@ -6,14 +6,14 @@ const { isValid } = mongoose.Types.ObjectId
 const Vote = require('../../models/Vote');
 
 async function validateObjectId(req, res, next) {
-  const { id } = req.params;
+  const { voteId } = req.params;
 
-  if (!isValid(id)) {
+  if (!isValid(voteId)) {
     return next(createError(400, 'Bad Request'));
   }
 
   try {
-    if (!await Vote.exists({ _id: id })) {
+    if (!await Vote.exists({ _id: voteId })) {
       return next(createError(400, 'Bad Request'));
     }
   } catch (err) {

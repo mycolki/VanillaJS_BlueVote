@@ -20,7 +20,7 @@ html
           h1.selectedVotingTitle= vote.title
           h2.selectedVotingExpiredAtText #{vote.expiredAt.toLocaleString() + ' 까지'}
 
-          form.selectedVotingForm(action=`/votings/${id}` method="POST")
+          form.selectedVotingForm(action=`/votings/${voteId}?_method=PUT` method="POST")
             each info in options
               button(
                 class=isParticipatedVote ? "votedOptionBtn" : "votingOptionBtn"
@@ -35,7 +35,7 @@ html
             a(href="/")
               button.backToVotingListBtn(type="button") 다른투표하기
           if isCreateUser
-            form(action=`/votings/${id}?_method=DELETE` method="POST")
+            form(action=`/votings/${voteId}?_method=DELETE` method="POST")
               button.removeVoteBtn(
                 type="submit"
                 onclick="window.history.back()"

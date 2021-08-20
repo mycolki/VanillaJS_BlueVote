@@ -86,19 +86,18 @@ exports.createVoting = async function (req, res, next) {
 }
 
 exports.viewSelectedVoting = async function (req, res, next) {
+  const { voteId } = req.params;
   const userId = req.user._id;
-  const voteId = req.params.id;
   const currentDate = new Date().toISOString();
 
-  let isActive = false;
   let comment = VOTING_COMMENT.FIRST_VOTE;
+  let isActive = false;
+  let isCreateUser = false;
+  let isExpired = false;
 
   try {
     const vote = await Vote.findOne({ _id: voteId }).exec();
     const isParticipatedVote = await User.exists({ participatedVotings: voteId });
-
-    let isCreateUser = false;
-    let isExpired = false;
 
     if (String(vote.createUser) === String(userId)) {
       isCreateUser = true;
@@ -115,7 +114,7 @@ exports.viewSelectedVoting = async function (req, res, next) {
 
     return res.render(VIEW.SELECTED_VOTING, {
       comment,
-      id: voteId,
+      voteId,
       vote,
       options: vote.options,
       isActive,
@@ -135,8 +134,8 @@ exports.viewSelectedVoting = async function (req, res, next) {
 };
 
 exports.participateVoting = async function (req, res, next) {
+  const { voteId } = req.params;
   const userId = req.user._id;
-  const voteId = req.params.id;
   const optionId = req.body.option;
 
   try {
@@ -186,7 +185,7 @@ exports.participateVoting = async function (req, res, next) {
 };
 
 exports.deleteVoting = async function (req, res, next) {
-  const voteId = req.params.id;
+  const { voteId } = req.params;
   const userId = req.user._id;
 
   try {
