@@ -57,6 +57,8 @@
 .ongoingVoteBtn:hover,
 .finishedVoteBtn:hover {
   transform: scale(1.05);
+  background-color: #00A1DF;
+  color: white;
 }
 
 .votingContainer {
@@ -76,6 +78,10 @@
 .newVotingBtn:hover,
 .votingContainer:hover {
   transform: scaleX(1.05);
+}
+
+.votingContainer:hover {
+  background-color: transparent;
 }
 
 .votingInfo {

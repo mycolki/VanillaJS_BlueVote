@@ -18,7 +18,7 @@
   margin-top: 20px;
   outline: 0;
   border: 0;
-  border-bottom: 2px solid #FFFFFF70;
+  border-bottom: 3px solid #00A1DF;
   text-align: center;
   background-color: transparent;
   color: white;
@@ -28,12 +28,13 @@
   width: 360px;
   height: 40px;
   text-align: center;
+  font-weight: 800;
   font-size: 14px;
   outline: none;
   border: 0;
-  border-bottom: 3px solid #FFFFFF70;
+  border-bottom: 3px solid #00A1DF;
   background-color: transparent;
-  color: white;
+  color: #00A1DF;
 }
 
 .expiredAtText,
@@ -69,31 +70,21 @@
   color: white;
 }
 
-.removeOptionBtn,
 .addOptionBtn,
 .createVotingBtn {
+  width: 160px;
   height: 40px;
+  font-weight: 800;
   line-height: 40px;
   border-radius: 10px;
-  background-color: #FFFFFF70;
-}
-
-.removeOptionBtn {
-  display: block;
-  width: 50px;
+  background-color: #00A1DF;
+  color: white;
 }
 
 .buttons {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.addOptionBtn,
-.createVotingBtn {
-  width: 160px;
-  font-weight: 800;
-  color: #00A1DF;
 }
 
 .addOptionBtn {
@@ -104,6 +95,8 @@
 .createVotingBtn:hover {
   font-style: italic;
   transform: scaleX(1.05);
+  background-color: #FFFFFF40;
+  color: #00A1DF;
 }
 
 .addOptionMessage {
