@@ -14,8 +14,10 @@ router.post(VOTINGS.NEW,
   body('title')
     .exists({ checkFalsy: true })
     .isString(),
-  body('options').notEmpty(),
-  body('expiredAt').exists({ checkFalsy: true }),
+  body('options')
+    .notEmpty(),
+  body('expiredAt')
+    .exists({ checkFalsy: true }),
   votingsController.createVoting
 );
 

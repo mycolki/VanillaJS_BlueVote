@@ -13,20 +13,16 @@ exports.authenticateUser = function (req, res, next) {
   passport.authenticate(
     'local',
     function (err, user, message) {
-      if (err) {
-        if (err instanceof mongoose.Error.ValidationError) {
-          for (field in err.errors) {
-            return next(500, err.errors[field].message);
-          }
+      if (err instanceof mongoose.Error.ValidationError) {
+        for (field in err.errors) {
+          return next(500, err.errors[field].message);
         }
 
         return next(createError(500, SERVER_ERROR));
       }
 
       if (!user) {
-        return res
-          .status(400)
-          .render(VIEW.LOGIN, { message });
+        return res.status(400).render(VIEW.LOGIN, { message });
       }
 
       req.logIn(user, function (err) {

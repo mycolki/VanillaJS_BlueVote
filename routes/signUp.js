@@ -11,9 +11,12 @@ router.get(SIGN_UP.BASE, signUpController.viewSignUpPage);
 
 router.post(SIGN_UP.BASE,
   body('email')
-    .isEmail().bail()
-    .custom(val => emailRegex.test(val)).bail(),
-  body('password').isLength({ min: 4, max: 8 }),
+    .isEmail()
+    .bail()
+    .custom(emailRegex.test)
+    .bail(),
+  body('password')
+    .isLength({ min: 4, max: 8 }),
   signUpController.signUpNewUser
 );
 

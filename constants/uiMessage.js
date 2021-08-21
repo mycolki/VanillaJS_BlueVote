@@ -14,6 +14,8 @@ const VALIDATION = {
   FILL_OPTION_BLANKS: {
     message: '비어있는 선택지가 없도록 모두 입력해주세요'
   },
+  NOT_EXIST_EMAIL: '입력하신 계정과 일치하는 계정이 없습니다',
+  NOT_EQUAL_PW_WITH_EMAIL: '이메일과 비밀번호가 일치하지 않습니다',
   INPUT_BY_CONDITION: '항목을 조건에 맞게 다시 입력해주세요',
   MALFORMED_INFO: '형식이 잘못 되었습니다. 다시 입력해주세요',
   REDIRECT_NOT_LOGGED_IN_USER: '로그인되지 않은 사용자입니다. 로그인페이지로 이동합니다',

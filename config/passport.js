@@ -3,6 +3,8 @@ const LocalStrategy = require('passport-local').Strategy;
 
 const bcryptjs = require('bcryptjs');
 
+const { VALIDATION } = require("../constants/uiMessage");
+
 const User = require('../models/User');
 
 passport.use(new LocalStrategy(
@@ -15,13 +17,13 @@ passport.use(new LocalStrategy(
       const user = await User.findOne({ email });
 
       if (!user) {
-        return done(null, false, '입력하신 계정과 일치하는 계정이 없습니다.');
+        return done(null, false, VALIDATION.NOT_EXIST_EMAIL);
       }
 
       const isPasswordCorrect = await bcryptjs.compare(password, user.password);
 
       if (!isPasswordCorrect) {
-        return done(null, false, '패스워드가 일치하지 않습니다.');
+        return done(null, false, VALIDATION.NOT_EQUAL_PW_WITH_EMAIL);
       }
 
       done(null, user);
