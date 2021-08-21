@@ -17,8 +17,7 @@ exports.viewSignUpPage = function (req, res, next) {
 
 exports.signUpNewUser = async function (req, res, next) {
   if (!req.body) {
-    return res
-      .status(400)
+    return res.status(400)
       .render(VIEW.SIGN_UP, VALIDATION.EMAIL_PW);
   }
 
@@ -28,8 +27,7 @@ exports.signUpNewUser = async function (req, res, next) {
 
   try {
     if (await User.exists({ email })) {
-      return res
-        .status(400)
+      return res.status(400)
         .render(VIEW.SIGN_UP, VALIDATION.EXIST_EMAIL);
     }
   } catch (err) {
@@ -45,20 +43,14 @@ exports.signUpNewUser = async function (req, res, next) {
   }
 
   if (!errors.isEmpty()) {
-    const invalidInputs = errors.array()
-      .map(error => error.param)
-      .join(', ');
+    const invalidInputs = errors.array().map(error => error.param).join(', ');
 
-    return res
-      .status(400)
-      .render(VIEW.SIGN_UP, {
-        message: invalidInputs + VALIDATION.MALFORMED_INFO
-      });
+    return res.status(400)
+      .render(VIEW.SIGN_UP, { message: invalidInputs + VALIDATION.MALFORMED_INFO });
   }
 
   if (password !== checkedPassword) {
-    return res
-      .status(400)
+    return res.status(400)
       .render(VIEW.SIGN_UP, VALIDATION.NOT_EQUAL_PW);
   }
 

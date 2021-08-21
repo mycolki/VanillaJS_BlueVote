@@ -4,7 +4,6 @@ const isAfter = require('date-fns/isAfter');
 const mongoose = require('mongoose');
 mongoose.set('useFindAndModify', false);
 
-
 const Vote = require('../../models/Vote');
 const User = require('../../models/User');
 
@@ -31,8 +30,7 @@ exports.createVoting = async function (req, res, next) {
   }
 
   if (!req.body) {
-    return res
-      .status(400)
+    return res.status(400)
       .render(VIEW.NEW_VOTING, VALIDATION.FILL_ALL_BLANKS);
   }
 
@@ -47,17 +45,13 @@ exports.createVoting = async function (req, res, next) {
     errors.array().forEach(error => allErrors[error.param] = forms[error.param]);
     const invalidInputs = Object.values(allErrors).join(', ');
 
-    return res
-      .status(400)
-      .render(VIEW.NEW_VOTING, {
-        message: invalidInputs + VALIDATION.INPUT_BY_CONDITION
-      });
+    return res.status(400)
+      .render(VIEW.NEW_VOTING, { message: invalidInputs + VALIDATION.INPUT_BY_CONDITION });
   }
 
   for (const option of options) {
     if (!option.trim()) {
-      return res
-        .status(400)
+      return res.status(400)
         .render(VIEW.NEW_VOTING, VALIDATION.FILL_OPTION_BLANKS);
     }
 

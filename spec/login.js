@@ -2,9 +2,10 @@ const request = require("supertest");
 const { expect } = require("chai");
 const app = require("../app");
 
-describe("login_ GET", function () {
-  const LOGIN_VIEWER_TEXT = "Welcome to Blue Vote";
+const LOGIN_VIEWER_TEXT = "Welcome to Blue Vote";
+const LOGIN_QUERY_STRING = "email=mycolki@gmail.com&&password=1111";
 
+describe("GET /login", function () {
   it("should respond with login template", function (done) {
     request(app)
       .get("/login")
@@ -19,10 +20,12 @@ describe("login_ GET", function () {
   });
 });
 
-describe("login_ POST", function () {
-  it("should respond with main template", function (done) {
+describe("POST /login", function () {
+  it("should redirect to main", function (done) {
     request(app)
       .post("/login")
+      .set("Content-Type", "application/x-www-form-urlencoded")
+      .send(LOGIN_QUERY_STRING)
       .expect(302)
       .expect("Location", "/")
       .end(function (err, res) {

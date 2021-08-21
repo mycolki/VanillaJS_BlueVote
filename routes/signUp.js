@@ -13,7 +13,7 @@ router.post(SIGN_UP.BASE,
   body('email')
     .isEmail()
     .bail()
-    .custom(emailRegex.test)
+    .custom(val => emailRegex.test(val))
     .bail(),
   body('password')
     .isLength({ min: 4, max: 8 }),
