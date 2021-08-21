@@ -1,6 +1,5 @@
-const mongoose = require('mongoose');
 const createError = require('http-errors');
-
+const mongoose = require('mongoose');
 const { isValid } = mongoose.Types.ObjectId
 
 const Vote = require('../../models/Vote');

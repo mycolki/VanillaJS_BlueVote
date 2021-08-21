@@ -1,5 +1,6 @@
 const { validationResult } = require('express-validator');
 const createError = require('http-errors');
+const mongoose = require('mongoose');
 const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 

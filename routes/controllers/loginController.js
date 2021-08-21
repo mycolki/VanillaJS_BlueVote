@@ -1,5 +1,6 @@
 const passport = require('passport');
 const createError = require('http-errors');
+const mongoose = require('mongoose');
 
 const { SERVER_ERROR } = require('../../constants/errorMessage');
 const { ROUTE } = require('../../constants/route');

@@ -1,9 +1,9 @@
-const mongoose = require('mongoose');
-mongoose.set('useFindAndModify', false);
-
 const { validationResult } = require('express-validator');
 const createError = require('http-errors');
 const isAfter = require('date-fns/isAfter');
+const mongoose = require('mongoose');
+mongoose.set('useFindAndModify', false);
+
 
 const Vote = require('../../models/Vote');
 const User = require('../../models/User');
