@@ -146,8 +146,8 @@ exports.participateVoting = async function (req, res, next) {
         _id: voteId,
         'options._id': optionId,
       },
-      { $inc:
-        {
+      {
+        $inc: {
           'options.$.votingCount': 1
         }
       }
