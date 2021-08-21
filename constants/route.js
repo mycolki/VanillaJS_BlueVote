@@ -28,6 +28,7 @@ const VOTINGS = {
   NEW: '/new',
   SUCCESS: '/success',
   ROUTE_SUCCESS: '/votings/success',
+  VOTE_ID: '/:voteId',
 };
 
 module.exports = {

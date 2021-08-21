@@ -21,8 +21,8 @@ router.post(VOTINGS.NEW,
   votingsController.createVoting
 );
 
-router.get('/:voteId', validateObjectId, votingsController.viewSelectedVoting);
-router.put('/:voteId', validateObjectId, votingsController.participateVoting);
-router.delete('/:voteId', validateObjectId, votingsController.deleteVoting);
+router.get(VOTINGS.VOTE_ID, validateObjectId, votingsController.viewSelectedVoting);
+router.put(VOTINGS.VOTE_ID, validateObjectId, votingsController.participateVoting);
+router.delete(VOTINGS.VOTE_ID, validateObjectId, votingsController.deleteVoting);
 
 module.exports = router;
