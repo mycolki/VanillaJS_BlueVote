@@ -23,7 +23,8 @@ html
                   span.creator= email
                   span.expiredTime #{vote.expiredAt.toLocaleString()}
                 p.votingTitle= vote.title
-        a(href="/")
-          button.backToMainBtn(type="button") 메인으로 돌아가기
-        form.logoutForm(action="/myVotings" method="POST")
-          button.logoutBtn(type="submit") LOGOUT
+        .myVotingBtns
+          a(href="/")
+            button.backToMainBtn(type="button") 메인으로 돌아가기
+          form.logoutForm(action="/myVotings" method="POST")
+            button.logoutBtn(type="submit") LOGOUT

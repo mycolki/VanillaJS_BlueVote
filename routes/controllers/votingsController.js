@@ -45,7 +45,6 @@ exports.createVoting = async function (req, res, next) {
 
   if (!errors.isEmpty()) {
     errors.array().forEach(error => allErrors[error.param] = forms[error.param]);
-
     const invalidInputs = Object.values(allErrors).join(', ');
 
     return res
@@ -56,7 +55,7 @@ exports.createVoting = async function (req, res, next) {
   }
 
   for (const option of options) {
-    if (!option) {
+    if (!option.trim()) {
       return res
         .status(400)
         .render(VIEW.NEW_VOTING, VALIDATION.FILL_OPTION_BLANKS);
