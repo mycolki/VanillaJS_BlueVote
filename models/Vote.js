@@ -12,7 +12,7 @@ const voteSchema = new mongoose.Schema({
   },
   expiredAt: {
     type: Date,
-    default: new Date().toISOString(),
+    default: new Date(),
   },
   options: [
     {

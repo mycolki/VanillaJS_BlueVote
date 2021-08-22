@@ -65,6 +65,8 @@ exports.createVoting = async function (req, res, next) {
       expiredAt,
       options: optionList,
     });
+
+    res.redirect(VOTINGS.ROUTE_SUCCESS);
   } catch (err) {
     console.error(err);
 
@@ -74,10 +76,8 @@ exports.createVoting = async function (req, res, next) {
       }
     }
 
-    return next(createError(500, SERVER_ERROR));
+    next(createError(500, SERVER_ERROR));
   }
-
-  res.redirect(VOTINGS.ROUTE_SUCCESS);
 };
 
 exports.viewSelectedVoting = async function (req, res, next) {
@@ -160,9 +160,17 @@ exports.participateVoting = async function (req, res, next) {
 
   try {
     await User.findByIdAndUpdate(
-      { _id: userId },
-      { $push: { participatedVotings: voteId } },
+      {
+        _id: userId
+      },
+      {
+        $push: {
+          participatedVotings: voteId
+        }
+      },
     );
+
+    res.redirect(`/votings/${voteId}`);
   } catch (err) {
     console.error(err);
 
@@ -172,10 +180,8 @@ exports.participateVoting = async function (req, res, next) {
       }
     }
 
-    return next(createError(500, SERVER_ERROR));
+    next(createError(500, SERVER_ERROR));
   }
-
-  res.redirect(`/votings/${voteId}`);
 };
 
 exports.deleteVoting = async function (req, res, next) {
@@ -188,6 +194,8 @@ exports.deleteVoting = async function (req, res, next) {
     if (String(createUser) === String(userId)) {
       await Vote.deleteOne({ _id: voteId });
     }
+
+    res.redirect(ROUTE.MAIN);
   } catch (err) {
     console.error(err);
 
@@ -197,8 +205,6 @@ exports.deleteVoting = async function (req, res, next) {
       }
     }
 
-    return next(createError(500, SERVER_ERROR));
+    next(createError(500, SERVER_ERROR));
   }
-
-  res.redirect(ROUTE.MAIN);
 };
