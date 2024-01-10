@@ -1,5 +1,7 @@
-# Blue Vote (Voting Platform)
-사람들과 투표를 만들고 참여할 수 있게 하는 투표플랫폼 웹 애플리케이션을 구현했습니다.
+# Blue Vote 
+사람들과 투표를 만들고 참여할 수 있게 하는 투표플랫폼 웹 애플리케이션입니다. 
+
+Assignment implemetation
 
 ## Features
 
@@ -31,3 +33,13 @@
 - 투표 생성페이지 개발, 선택지 추가 및 삭제 기능 구현
 - 프로필에서 생성한 투표보기 기능 구현
 - 같은 투표는 한 번만 진행할 수 있도록 제한
+
+## Installation
+
+```sh
+npm install
+```
+```sh
+npm start
+# Visit localhost:3000
+```
